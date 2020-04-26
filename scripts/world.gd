@@ -22,7 +22,8 @@ func load_current_level():
 	emit_signal("loading_level")
 	
 	add_child(current_level)
-	#TODO: init level
+	current_level.init()
+	
 	emit_signal("level_loaded")
 	
 func unload_level():

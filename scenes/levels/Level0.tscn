@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Miles.tscn" type="PackedScene" id=1]
 [ext_resource path="res://resources/tiles/pathfinding/tilemap0.tmx" type="PackedScene" id=2]
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=3]
+[ext_resource path="res://scenes/PlayerController.tscn" type="PackedScene" id=4]
 
 [node name="Level0" type="Node2D"]
 script = ExtResource( 3 )
@@ -15,4 +16,7 @@ position = Vector2( 518.116, 320.809 )
 [node name="GroundTiles" type="Node2D" parent="."]
 
 [node name="Pathfinding" parent="GroundTiles" instance=ExtResource( 2 )]
+visible = false
 z_index = -1
+
+[node name="PlayerController" parent="." instance=ExtResource( 4 )]

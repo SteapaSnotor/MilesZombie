@@ -23,8 +23,8 @@ var is_ready = false
 #this dictionary contains the weight for wich tile. Tiles are represented
 #by its ID.
 var weight_id = {
-	6:5,
-	5:1
+	3:5,
+	4:1
 }
 
 #INITIALIZE
