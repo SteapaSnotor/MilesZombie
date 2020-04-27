@@ -23,7 +23,7 @@ var is_ready = false
 #this dictionary contains the weight for wich tile. Tiles are represented
 #by its ID.
 var weight_id = {
-	3:5,
+	3:10,
 	4:1
 }
 
@@ -104,8 +104,8 @@ func find_path(from,to):
 	for position in path_points3:
 		path_points2.push_back(vector_convert(position))
 		path_points2[path_points2.size()-1] = tile_node.map_to_world(path_points2[path_points2.size()-1])
-		#path_points2[path_points2.size()-1].x -= (tile_size.x/2)
-		#path_points2[path_points2.size()-1].y -= (tile_size.y/2)
+		path_points2[path_points2.size()-1].x += (tile_size.x/2)
+		path_points2[path_points2.size()-1].y -= (tile_size.y/2)
 	
 	return path_points2
 	

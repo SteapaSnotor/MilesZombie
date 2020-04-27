@@ -16,23 +16,21 @@ func init(controller):
 	self.controller = controller
 	
 	#signals
-	self.controller.connect('clicked',self,'move')
-
+	self.controller.connect('clicked',self,'player_clicked')
+	
 #player's movement
 func _physics_process(delta):
 	if _is_moving:
-		_is_moving = run(global_position,_moving_target,delta)
-	
-
+		_is_moving = move(global_position,_moving_target,delta)
+		
 #player's animations
 func _process(delta):
 	update_animations()
 	
-	
-func move(to):
+#when player uses the go action
+func player_clicked(at):
 	_is_moving = true
-	_moving_target = to
-	
+	_moving_target = at
 
 func update_animations():
 	#TODO: update it according to its states
