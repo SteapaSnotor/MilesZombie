@@ -6,8 +6,10 @@ extends KinematicBody2D
 """
 
 var speed = 150
+var health = 100
 var facing_dir = Vector2.DOWN
 var current_path = []
+var is_moving = false
 
 #Run from a place to another using pathfinding. 
 #Returns false if is already in place.
@@ -57,6 +59,14 @@ func move(from,to,delta,min_distance = 20):
 			
 		if move_and_collide(dir * speed * delta) != null: return false
 		return true
+	
+
+func attack(body):
+	#attacks someone
+	#TODO: body should be a vector, but actor with this class as a base
+	#TODO: hit calculations must be applied here
+	var dir = (body - global_position).normalized()
+	update_facing(dir)
 	
 	
 func clear_current_path():
