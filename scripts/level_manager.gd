@@ -28,7 +28,14 @@ func init():
 	player = $ActorsAndTiles/Miles
 	player.init(controller)
 	
+	#initialize the enemies
+	init_AI()
+	
 	emit_signal("initialized")
+
+func init_AI():
+	for object in $ActorsAndTiles.get_children():
+		if object.is_in_group('Enemy'): object.init(player)
 	
 
 func get_path_map():

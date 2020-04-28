@@ -3,7 +3,6 @@ extends "res://scripts/char_actor.gd"
 """
 	Player character/actor main node.
 	Store data and deals with tons of player's systems e.g: FSM.
-	
 """
 
 #the states that each state can transition to

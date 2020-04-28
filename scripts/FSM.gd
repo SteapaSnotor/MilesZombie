@@ -29,6 +29,7 @@ func _physics_process(delta):
 func new_state(state):
 	current_state = state
 	current_state.init(actor,rules[state])
+	#current_state.init(actor,rules[state])
 
 func get_current_state():
 	return current_state

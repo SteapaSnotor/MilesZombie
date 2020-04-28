@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=2]
+[gd_scene load_steps=121 format=2]
 
 [ext_resource path="res://scenes/Miles.tscn" type="PackedScene" id=1]
 [ext_resource path="res://resources/tiles/pathfinding/tilemap0.tmx" type="PackedScene" id=2]
@@ -115,6 +115,7 @@
 [ext_resource path="res://sprites/characters/johnny/idle0/180/180.png0012.png" type="Texture" id=113]
 [ext_resource path="res://sprites/characters/johnny/idle0/180/180.png0013.png" type="Texture" id=114]
 [ext_resource path="res://sprites/characters/johnny/idle0/180/180.png0014.png" type="Texture" id=115]
+[ext_resource path="res://scenes/Civilian.tscn" type="PackedScene" id=116]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 110.362
@@ -171,27 +172,30 @@ shape = SubResource( 1 )
 position = Vector2( 303.579, 189.021 )
 frames = SubResource( 2 )
 animation = "New Anim 1"
-frame = 3
+frame = 1
 playing = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 497.818, 94.3819 )
 frames = SubResource( 3 )
-frame = 5
+frame = 3
 playing = true
 
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 432.469, 67.607 )
 frames = ExtResource( 101 )
 animation = "1_1"
-frame = 22
+frame = 20
 playing = true
 
 [node name="AnimatedSprite4" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 553.675, 78.902 )
 frames = SubResource( 4 )
-frame = 12
+frame = 7
 playing = true
+
+[node name="Civilian" parent="ActorsAndTiles" instance=ExtResource( 116 )]
+position = Vector2( 236.706, 314.248 )
 
 [node name="GroundTiles" type="Node2D" parent="."]
 
