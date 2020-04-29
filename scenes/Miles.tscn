@@ -128,7 +128,7 @@
 [ext_resource path="res://sprites/characters/miles/attacking1/315/315.png0014.png" type="Texture" id=126]
 [ext_resource path="res://sprites/characters/miles/attacking1/315/315.png0015.png" type="Texture" id=127]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 113 ), ExtResource( 114 ), ExtResource( 115 ), ExtResource( 116 ), ExtResource( 117 ), ExtResource( 118 ), ExtResource( 119 ), ExtResource( 120 ), ExtResource( 121 ), ExtResource( 122 ), ExtResource( 123 ), ExtResource( 124 ), ExtResource( 125 ), ExtResource( 126 ), ExtResource( 127 ) ],
 "loop": true,
@@ -171,7 +171,7 @@ animations = [ {
 "speed": 22.0
 } ]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 29.1961
 
 [node name="Miles" type="KinematicBody2D"]
@@ -180,28 +180,27 @@ script = ExtResource( 2 )
 [node name="Animations" type="Node2D" parent="."]
 
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
-visible = false
 frames = ExtResource( 7 )
-animation = "1_-1"
-frame = 23
+animation = "0_1"
+frame = 16
 playing = true
 
 [node name="Moving" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 1 )
 animation = "-1_-1"
-frame = 13
+frame = 17
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
-frames = SubResource( 2 )
+frames = SubResource( 1 )
 animation = "1_-1"
-frame = 8
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="FSM" parent="." instance=ExtResource( 3 )]
 

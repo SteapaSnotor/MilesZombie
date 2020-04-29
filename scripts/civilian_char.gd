@@ -23,6 +23,5 @@ func init(player):
 func _process(delta):
 	if player == null: return
 	
-	$State.text = fsm.get_current_state().name
 	#debug only
-	pass
+	$State.text = fsm.get_current_state().name

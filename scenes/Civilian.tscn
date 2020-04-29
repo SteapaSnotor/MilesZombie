@@ -1,31 +1,11 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/civilian_char.gd" type="Script" id=1]
-[ext_resource path="res://sprites/characters/johnny/idle0/0/0.png0001.png" type="Texture" id=2]
-[ext_resource path="res://sprites/characters/johnny/idle0/0/0.png0002.png" type="Texture" id=3]
-[ext_resource path="res://sprites/characters/johnny/idle0/0/0.png0003.png" type="Texture" id=4]
-[ext_resource path="res://sprites/characters/johnny/idle0/0/0.png0004.png" type="Texture" id=5]
-[ext_resource path="res://sprites/characters/johnny/idle0/0/0.png0005.png" type="Texture" id=6]
-[ext_resource path="res://sprites/characters/johnny/idle0/0/0.png0006.png" type="Texture" id=7]
-[ext_resource path="res://sprites/characters/johnny/idle0/0/0.png0007.png" type="Texture" id=8]
-[ext_resource path="res://sprites/characters/johnny/idle0/0/0.png0008.png" type="Texture" id=9]
-[ext_resource path="res://sprites/characters/johnny/idle0/0/0.png0009.png" type="Texture" id=10]
-[ext_resource path="res://sprites/characters/johnny/idle0/0/0.png0010.png" type="Texture" id=11]
-[ext_resource path="res://sprites/characters/johnny/idle0/0/0.png0011.png" type="Texture" id=12]
-[ext_resource path="res://sprites/characters/johnny/idle0/0/0.png0012.png" type="Texture" id=13]
-[ext_resource path="res://sprites/characters/johnny/idle0/0/0.png0013.png" type="Texture" id=14]
-[ext_resource path="res://sprites/characters/johnny/idle0/0/0.png0014.png" type="Texture" id=15]
+[ext_resource path="res://resources/animations_data/johnny_running.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://scenes/FSM.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scripts/states/civilian/Idle.gd" type="Script" id=17]
 [ext_resource path="res://scripts/states/civilian/Running.gd" type="Script" id=18]
-
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "default",
-"speed": 22.0
-} ]
+[ext_resource path="res://resources/animations_data/johnny_idle.tres" type="SpriteFrames" id=19]
 
 [node name="Civilian" type="KinematicBody2D" groups=[
 "Enemy",
@@ -34,9 +14,17 @@ script = ExtResource( 1 )
 
 [node name="Animations" type="Node2D" parent="."]
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Animations"]
-frames = SubResource( 1 )
-frame = 11
+[node name="Idle" type="AnimatedSprite" parent="Animations"]
+frames = ExtResource( 19 )
+animation = "225"
+frame = 2
+playing = true
+
+[node name="Running" type="AnimatedSprite" parent="Animations"]
+visible = false
+frames = ExtResource( 2 )
+animation = "225"
+frame = 22
 playing = true
 
 [node name="FSM" parent="." instance=ExtResource( 16 )]
@@ -46,6 +34,8 @@ script = ExtResource( 17 )
 
 [node name="Running" type="Node" parent="FSM"]
 script = ExtResource( 18 )
+
+[node name="Node" type="Node" parent="FSM"]
 
 [node name="State" type="Label" parent="."]
 margin_left = -25.0
