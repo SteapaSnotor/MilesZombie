@@ -1,11 +1,18 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/civilian_char.gd" type="Script" id=1]
 [ext_resource path="res://resources/animations_data/johnny_running.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://scripts/states/civilian/Dead.gd" type="Script" id=3]
+[ext_resource path="res://sprites/prototype_phase/bar_b.png" type="Texture" id=4]
+[ext_resource path="res://sprites/prototype_phase/bar_h.png" type="Texture" id=5]
+[ext_resource path="res://scripts/states/civilian/Attacking.gd" type="Script" id=6]
 [ext_resource path="res://scenes/FSM.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scripts/states/civilian/Idle.gd" type="Script" id=17]
 [ext_resource path="res://scripts/states/civilian/Running.gd" type="Script" id=18]
 [ext_resource path="res://resources/animations_data/johnny_idle.tres" type="SpriteFrames" id=19]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20.1754, 58.6322 )
 
 [node name="Civilian" type="KinematicBody2D" groups=[
 "Enemy",
@@ -17,14 +24,14 @@ script = ExtResource( 1 )
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
 frames = ExtResource( 19 )
 animation = "225"
-frame = 2
+frame = 10
 playing = true
 
 [node name="Running" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 2 )
 animation = "225"
-frame = 22
+frame = 9
 playing = true
 
 [node name="FSM" parent="." instance=ExtResource( 16 )]
@@ -35,7 +42,11 @@ script = ExtResource( 17 )
 [node name="Running" type="Node" parent="FSM"]
 script = ExtResource( 18 )
 
-[node name="Node" type="Node" parent="FSM"]
+[node name="Attacking" type="Node" parent="FSM"]
+script = ExtResource( 6 )
+
+[node name="Dead" type="Node" parent="FSM"]
+script = ExtResource( 3 )
 
 [node name="State" type="Label" parent="."]
 margin_left = -25.0
@@ -49,3 +60,28 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AIDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AIDetection"]
+shape = SubResource( 1 )
+
+[node name="Info" type="Control" parent="."]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="TextureProgress" parent="Info"]
+margin_left = -33.5851
+margin_top = -83.2078
+margin_right = 94.4149
+margin_bottom = 44.7922
+rect_scale = Vector2( 0.5, 0.2 )
+value = 100.0
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 5 )
+fill_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="AIDetection" to="." method="_on_mouse_entered"]

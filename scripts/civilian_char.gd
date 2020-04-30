@@ -5,9 +5,12 @@ extends "res://scripts/char_actor.gd"
 	Store data and deals with tons of AI systems e.g: FSM.
 """
 
+signal selected
+
 onready var state_transitions = {
-	$FSM/Idle:[$FSM/Running],
-	$FSM/Running:[$FSM/Idle]
+	$FSM/Idle:[$FSM/Running,$FSM/Attacking,$FSM/Dead],
+	$FSM/Running:[$FSM/Idle],
+	$FSM/Dead:[]
 }
 
 onready var fsm = $FSM
@@ -22,6 +25,10 @@ func init(player):
 
 func _process(delta):
 	if player == null: return
-	
+	#print(health)
 	#debug only
 	$State.text = fsm.get_current_state().name
+	$Info/HealthBar.value = health
+
+func _on_mouse_entered():
+	emit_signal("selected",self)

@@ -13,6 +13,7 @@ onready var states_transitions= {
 }
 
 var controller = null
+var selected_enemy = null
 
 onready var animation_node = $Animations
 onready var fsm = $FSM
@@ -54,7 +55,9 @@ func update_animations():
 	for anim in animation_node.get_children():
 		if anim.name != state: anim.hide()
 	
-	
+#the current animation being show
+func get_current_animation_node():
+	return animation_node.get_node(fsm.get_current_state().name)
 
-
-
+func on_enemy_selected(body):
+	selected_enemy = body

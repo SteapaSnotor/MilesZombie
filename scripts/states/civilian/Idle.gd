@@ -6,15 +6,29 @@ extends Node
 
 signal exited
 
+var actor = null
+var transitions = []
+
+var next_state = null
+
 func init(actor,transitions):
-	pass
+	self.actor = actor
+	self.transitions = transitions
 
 func update(delta):
-	pass
+	if actor == null: return
+	
+	check_transitions()
 
 func check_transitions():
-	pass
-
-func exit():
+	#transition 0 = Running
+	#transition 1 = Attacking
+	#transition 2 = Dead
+	if actor.health <= 0:
+		next_state = transitions[2]
+		exit()
+		
 	
-	emit_signal("exited")
+func exit():
+	actor = null
+	emit_signal("exited",next_state)

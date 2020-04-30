@@ -65,8 +65,10 @@ func attack(body):
 	#attacks someone
 	#TODO: body should be a vector, but actor with this class as a base
 	#TODO: hit calculations must be applied here
-	var dir = (body - global_position).normalized()
-	update_facing(dir)
+	body.health -= 10
+	pass
+	#var dir = (body - global_position).normalized()
+	#update_facing(dir)
 	
 	
 func clear_current_path():

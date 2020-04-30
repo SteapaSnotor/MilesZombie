@@ -35,8 +35,10 @@ func init():
 
 func init_AI():
 	for object in $ActorsAndTiles.get_children():
-		if object.is_in_group('Enemy'): object.init(player)
-	
+		if object.is_in_group('Enemy'): 
+			object.init(player)
+			object.connect('selected',player,'on_enemy_selected')
+			
 
 func get_path_map():
 	return $GroundTiles/Pathfinding.get_child(0)
