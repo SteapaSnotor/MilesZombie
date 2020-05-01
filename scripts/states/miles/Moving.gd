@@ -36,7 +36,15 @@ func update(delta):
 func check_transitions():
 	#transition 0 = Idle
 	#transition 1 = Attacking
+	if not actor.is_moving:
+		next_state = transitions[0]
+		exited()
+	elif actor.is_close_to_selected_enemy():
+		next_state = transitions[1]
+		exited()
+	else: return
 	
+	"""
 	if not actor.is_moving:
 		next_state = transitions[0]
 		exited()
@@ -44,6 +52,7 @@ func check_transitions():
 		next_state = transitions[1]
 		exited()
 	else: return
+	"""
 
 func set_pressed_special(at):
 	pressed_special = true

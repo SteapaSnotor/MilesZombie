@@ -12,10 +12,12 @@ var next_state = null
 var transitions = []
 var click_input = false
 var special_input = false
+var controller = null
 
 #initialize
 func init(actor,transitions):
 	self.actor = actor
+	self.controller = actor.controller
 	self.next_state = null
 	self.transitions = transitions
 	self.click_input = false
@@ -37,6 +39,14 @@ func check_transitions():
 	#transition 0 = Walking
 	#transition 1 = Attacking
 	
+	if controller.is_action_pressed('go') and not actor.is_close_to_selected_enemy():
+		next_state = transitions[0]
+		exited()
+	elif controller.is_action_pressed('go') and actor.is_close_to_selected_enemy():
+		next_state = transitions[1]
+		exited()
+	else: return
+	"""
 	if click_input == true:
 		#TODO: check if he's not hovering the UI
 		#TODO: check if he's not attacking
@@ -48,7 +58,7 @@ func check_transitions():
 		#TODO: check if he has specials? mana?
 		next_state = transitions[1]
 		exited()
-	
+	"""
 	
 func set_click_input(at):
 	click_input = true

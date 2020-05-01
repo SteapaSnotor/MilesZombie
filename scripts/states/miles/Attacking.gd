@@ -34,7 +34,7 @@ func update(delta):
 	if actor == null: return
 	
 	#update the facing position of the player in case he changes it
-	actor.update_facing((controller.get_last_click_special() - actor.global_position).normalized())
+	actor.update_facing((controller.get_last_click() - actor.global_position).normalized())
 	#actor.attack(controller.get_last_click_special())
 	check_transitions()
 
@@ -47,12 +47,22 @@ func attack():
 		#TODO:that will be unecessary later on when  being close will be
 		#one of the requirements to change to this sate
 		if actor.selected_enemy == null: return
-		if actor.selected_enemy.global_position.distance_to(actor.global_position)< 70:
-			actor.attack(actor.selected_enemy)
+		#if actor.selected_enemy.global_position.distance_to(actor.global_position)< 70:
+		actor.attack(actor.selected_enemy)
 
 func check_transitions():
 	#transition 0 = Idle
 	#transition 1 = Moving
+	if not actor.is_close_to_selected_enemy() and not controller.is_action_pressed('go'):
+		if has_attacked == true:
+			next_state = transitions[0]
+			exited()
+	elif not actor.is_close_to_selected_enemy() and controller.is_action_pressed('go'):
+			next_state = transitions[1]
+			exited()
+	else: return
+	
+	"""
 	if not controller.is_action_pressed('special') and not controller.is_action_pressed('go'):
 		if has_attacked == true:
 			next_state = transitions[0]
@@ -61,6 +71,7 @@ func check_transitions():
 		next_state = transitions[1]
 		exited()
 		pass
+	"""
 	
 	
 func exited():

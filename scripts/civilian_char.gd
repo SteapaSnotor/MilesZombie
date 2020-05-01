@@ -6,6 +6,7 @@ extends "res://scripts/char_actor.gd"
 """
 
 signal selected
+signal unselected
 
 onready var state_transitions = {
 	$FSM/Idle:[$FSM/Running,$FSM/Attacking,$FSM/Dead],
@@ -32,3 +33,6 @@ func _process(delta):
 
 func _on_mouse_entered():
 	emit_signal("selected",self)
+
+func _on_mouse_exited():
+	emit_signal("unselected",self)

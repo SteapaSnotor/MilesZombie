@@ -31,7 +31,7 @@ playing = true
 visible = false
 frames = ExtResource( 2 )
 animation = "225"
-frame = 9
+frame = 13
 playing = true
 
 [node name="FSM" parent="." instance=ExtResource( 16 )]
@@ -85,3 +85,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="mouse_entered" from="AIDetection" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="AIDetection" to="." method="_on_mouse_exited"]

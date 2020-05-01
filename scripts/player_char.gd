@@ -13,10 +13,12 @@ onready var states_transitions= {
 }
 
 var controller = null
-var selected_enemy = null
+var selected_enemy = null setget , get_current_enemy
 
 onready var animation_node = $Animations
 onready var fsm = $FSM
+
+const min_attack_range = 50
 
 #initialiazes player here
 func init(controller):
@@ -59,5 +61,27 @@ func update_animations():
 func get_current_animation_node():
 	return animation_node.get_node(fsm.get_current_state().name)
 
+func get_current_enemy():
+	return selected_enemy
+
+#check if Miles is in melee range of a selected enemy
+func is_close_to_selected_enemy():
+	if selected_enemy == null: return false
+	
+	var ref = weakref(selected_enemy)
+	if ref.get_ref() == null: return false
+	
+	if global_position.distance_to(selected_enemy.global_position) >min_attack_range:
+		return false
+	
+	#this may be too perfomance heavy
+	#var path = pathfinding.find_path(global_position,selected_enemy.global_position)
+	#if path.size() > 1: return false
+	
+	return true
+
 func on_enemy_selected(body):
 	selected_enemy = body
+
+func on_enemy_unselected(body):
+	if selected_enemy == body: selected_enemy = null

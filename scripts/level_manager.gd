@@ -1,7 +1,7 @@
 extends Node2D
 
 """
-	Manages the level.
+	Manages the level and the actors on it.
 """
 
 signal initialized
@@ -38,7 +38,7 @@ func init_AI():
 		if object.is_in_group('Enemy'): 
 			object.init(player)
 			object.connect('selected',player,'on_enemy_selected')
-			
+			object.connect('unselected',player,'on_enemy_unselected')
 
 func get_path_map():
 	return $GroundTiles/Pathfinding.get_child(0)
