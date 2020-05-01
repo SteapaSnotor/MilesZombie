@@ -40,8 +40,9 @@ func check_transitions():
 	#transition 1 = Attacking
 	
 	if controller.is_action_pressed('go') and not actor.is_close_to_selected_enemy():
-		next_state = transitions[0]
-		exited()
+		if actor.can_walk(controller.get_last_click()):
+			next_state = transitions[0]
+			exited()
 	elif controller.is_action_pressed('go') and actor.is_close_to_selected_enemy():
 		next_state = transitions[1]
 		exited()

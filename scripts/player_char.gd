@@ -19,6 +19,7 @@ onready var animation_node = $Animations
 onready var fsm = $FSM
 
 const min_attack_range = 50
+const min_walking_distance = 20
 
 #initialiazes player here
 func init(controller):
@@ -79,6 +80,12 @@ func is_close_to_selected_enemy():
 	#if path.size() > 1: return false
 	
 	return true
+	
+#TODO: test other stuff here e.g collisions
+func can_walk(to):
+	if to.distance_to(global_position) <= min_walking_distance:
+		return false
+	else: return true
 
 func on_enemy_selected(body):
 	selected_enemy = body
