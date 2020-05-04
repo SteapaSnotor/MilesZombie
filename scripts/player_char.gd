@@ -85,6 +85,8 @@ func is_close_to_selected_enemy():
 func can_walk(to):
 	if to.distance_to(global_position) <= min_walking_distance:
 		return false
+	elif test_move(get_transform(),(to - global_position).normalized()):
+		return false
 	else: return true
 
 func on_enemy_selected(body):
