@@ -9,6 +9,7 @@ var speed = 150
 var health = 100
 var facing_dir = Vector2.DOWN
 var current_path = []
+var current_target = Vector2.ZERO
 var is_moving = false
 
 #Run from a place to another using pathfinding. 
@@ -22,8 +23,10 @@ func run(from,to,delta,min_distance = 5):
 	var dir = Vector2.ZERO
 	var current_tile = Vector2.ZERO
 	
-	if current_path.empty():
+	if current_path.empty() or current_target != to:
 		current_path = pathfinding.find_path(from_offset,to_offset)
+	
+	current_target = to_offset
 	
 	if current_path.size() > 1:
 		dir = (current_path[1] - from).normalized()

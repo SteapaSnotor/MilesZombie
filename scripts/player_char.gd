@@ -94,3 +94,4 @@ func on_enemy_selected(body):
 
 func on_enemy_unselected(body):
 	if selected_enemy == body: selected_enemy = null
+

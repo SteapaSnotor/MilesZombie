@@ -27,7 +27,9 @@ func check_transitions():
 	if actor.health <= 0:
 		next_state = transitions[2]
 		exit()
-		
+	elif actor.is_seeing_player():
+		next_state = transitions[0]
+		exit()
 	
 func exit():
 	actor = null

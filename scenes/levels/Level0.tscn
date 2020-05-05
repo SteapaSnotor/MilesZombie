@@ -202,25 +202,26 @@ shape = SubResource( 1 )
 position = Vector2( 303.579, 189.021 )
 frames = SubResource( 2 )
 animation = "New Anim 1"
-frame = 12
+frame = 9
 playing = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 497.818, 94.3819 )
 frames = SubResource( 3 )
-frame = 16
+frame = 5
 playing = true
 
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 432.469, 67.607 )
 frames = ExtResource( 101 )
 animation = "1_1"
-frame = 7
+frame = 4
 playing = true
 
 [node name="AnimatedSprite4" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 553.675, 78.902 )
 frames = SubResource( 4 )
+frame = 1
 playing = true
 
 [node name="Civilian" parent="ActorsAndTiles" instance=ExtResource( 116 )]
@@ -235,13 +236,12 @@ position = Vector2( 351.932, 243.017 )
 [node name="AnimatedSprite5" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 232.625, 149.642 )
 frames = SubResource( 5 )
-frame = 17
+frame = 10
 playing = true
 
 [node name="GroundTiles" type="Node2D" parent="."]
 
 [node name="Pathfinding" parent="GroundTiles" instance=ExtResource( 2 )]
-visible = false
 z_index = -1
 
 [node name="PlayerController" parent="." instance=ExtResource( 4 )]
