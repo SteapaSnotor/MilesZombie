@@ -1,4 +1,4 @@
-[gd_scene load_steps=190 format=2]
+[gd_scene load_steps=191 format=2]
 
 [ext_resource path="res://scripts/civilian_char.gd" type="Script" id=1]
 [ext_resource path="res://resources/animations_data/johnny_running.tres" type="SpriteFrames" id=2]
@@ -187,7 +187,7 @@
 [ext_resource path="res://sprites/characters/johnny/attacking0/315/315.png0021.png" type="Texture" id=185]
 [ext_resource path="res://sprites/characters/johnny/attacking0/315/315.png0022.png" type="Texture" id=186]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 166 ), ExtResource( 165 ), ExtResource( 167 ), ExtResource( 168 ), ExtResource( 169 ), ExtResource( 170 ), ExtResource( 171 ), ExtResource( 172 ), ExtResource( 173 ), ExtResource( 174 ), ExtResource( 175 ), ExtResource( 176 ), ExtResource( 177 ), ExtResource( 178 ), ExtResource( 179 ), ExtResource( 180 ), ExtResource( 181 ), ExtResource( 182 ), ExtResource( 183 ), ExtResource( 184 ), ExtResource( 185 ), ExtResource( 186 ) ],
 "loop": true,
@@ -230,11 +230,14 @@ animations = [ {
 "speed": 24.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 20.1754, 58.6322 )
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 radius = 262.036
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 69.1376
 
 [node name="Civilian" type="KinematicBody2D" groups=[
 "Enemy",
@@ -242,25 +245,26 @@ radius = 262.036
 script = ExtResource( 1 )
 
 [node name="Animations" type="Node2D" parent="."]
+position = Vector2( 0, -32 )
 
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
-visible = false
 frames = ExtResource( 19 )
-animation = "1_-1"
-frame = 11
+animation = "0_1"
+frame = 13
 playing = true
 
 [node name="Running" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 2 )
 animation = "1_-1"
-frame = 9
+frame = 18
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
-frames = SubResource( 3 )
-animation = "1_-1"
-frame = 9
+visible = false
+frames = SubResource( 1 )
+animation = "-1_-1"
+frame = 4
 playing = true
 
 [node name="FSM" parent="." instance=ExtResource( 16 )]
@@ -279,9 +283,9 @@ script = ExtResource( 3 )
 
 [node name="State" type="Label" parent="."]
 margin_left = -25.0
-margin_top = -68.0
+margin_top = -140.0
 margin_right = 18.0
-margin_bottom = -54.0
+margin_bottom = -126.0
 text = "STATE"
 align = 1
 valign = 1
@@ -293,14 +297,24 @@ __meta__ = {
 [node name="AIDetection" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AIDetection"]
-shape = SubResource( 1 )
+position = Vector2( 0, -22 )
+shape = SubResource( 2 )
 
 [node name="SightDetection" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SightDetection"]
-shape = SubResource( 2 )
+position = Vector2( 0, -32 )
+shape = SubResource( 3 )
+
+[node name="MeleeRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeRange"]
+position = Vector2( -0.663422, -27.2003 )
+shape = SubResource( 4 )
 
 [node name="Info" type="Control" parent="."]
+margin_top = -72.0
+margin_bottom = -72.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -322,3 +336,5 @@ __meta__ = {
 [connection signal="mouse_exited" from="AIDetection" to="." method="_on_mouse_exited"]
 [connection signal="body_entered" from="SightDetection" to="." method="on_sight_detection_entered"]
 [connection signal="body_exited" from="SightDetection" to="." method="on_sight_detection_exited"]
+[connection signal="body_entered" from="MeleeRange" to="." method="on_entered_melee_range"]
+[connection signal="body_exited" from="MeleeRange" to="." method="on_exited_melee_range"]

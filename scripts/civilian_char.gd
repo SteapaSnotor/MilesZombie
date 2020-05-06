@@ -17,10 +17,12 @@ onready var state_transitions = {
 
 onready var fsm = $FSM
 onready var animation_node = $Animations
+onready var current_animation_node = $Animations/Idle setget , get_current_animation_node
 
 var player = null setget , get_player
 var _is_aggressive = true setget , is_aggressive#TODO: set this on init
 var _player_on_sight = false setget , is_seeing_player
+var _player_on_melee_range = false setget , is_player_on_melee_range
 
 func init(player):
 	self.player = player
@@ -46,8 +48,14 @@ func is_seeing_player():
 func is_aggressive():
 	return _is_aggressive
 
+func is_player_on_melee_range():
+	return _player_on_melee_range
+
 func get_player():
 	return player
+
+func get_current_animation_node():
+	return current_animation_node
 
 #updates the current animation according to its state and direction
 #the player is facing.
@@ -58,10 +66,10 @@ func update_animations():
 	anim_name = str(facing_dir.x) + '_' + str(facing_dir.y)
 	animation_node.get_node(state).play(anim_name)
 	animation_node.get_node(state).show()
+	current_animation_node = animation_node.get_node(state)
 	
 	for anim in animation_node.get_children():
 		if anim.name != state: anim.hide()
-
 
 func _on_mouse_entered():
 	emit_signal("selected",self)
@@ -75,4 +83,8 @@ func on_sight_detection_entered(body):
 func on_sight_detection_exited(body):
 	if body == player: _player_on_sight = false
 
+func on_entered_melee_range(body):
+	if body == player: _player_on_melee_range = true
 
+func on_exited_melee_range(body):
+	if body == player: _player_on_melee_range = false

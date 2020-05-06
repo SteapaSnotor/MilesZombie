@@ -7,9 +7,10 @@ extends "res://scripts/char_actor.gd"
 
 #the states that each state can transition to
 onready var states_transitions= {
-	$FSM/Idle:[$FSM/Moving,$FSM/Attacking],
-	$FSM/Moving:[$FSM/Idle,$FSM/Attacking],
-	$FSM/Attacking:[$FSM/Idle,$FSM/Moving]
+	$FSM/Idle:[$FSM/Moving,$FSM/Attacking,$FSM/Dead],
+	$FSM/Moving:[$FSM/Idle,$FSM/Attacking,$FSM/Dead],
+	$FSM/Attacking:[$FSM/Idle,$FSM/Moving,$FSM/Dead],
+	$FSM/Dead:[]
 }
 
 var controller = null
@@ -37,6 +38,8 @@ func _process(delta):
 	
 	#debug only: show the current state
 	$State.text = fsm.get_current_state().name
+	#debug only: update health bar
+	$Info/HealthBar.value = health
 	
 #when player uses the go action
 func player_clicked(at):

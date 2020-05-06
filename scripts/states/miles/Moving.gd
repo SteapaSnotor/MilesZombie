@@ -36,7 +36,12 @@ func update(delta):
 func check_transitions():
 	#transition 0 = Idle
 	#transition 1 = Attacking
-	if not actor.is_moving:
+	#transition 2 = Dead
+	
+	if actor.get_health() <= 0:
+		next_state = transitions[2]
+		exited()
+	elif not actor.is_moving:
 		next_state = transitions[0]
 		exited()
 	elif actor.is_close_to_selected_enemy():

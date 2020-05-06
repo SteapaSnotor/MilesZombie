@@ -149,14 +149,14 @@ animations = [ {
 "name": "default",
 "speed": 22.0
 }, {
-"frames": [ ExtResource( 54 ), ExtResource( 53 ), ExtResource( 55 ), ExtResource( 56 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 59 ), ExtResource( 60 ), ExtResource( 61 ), ExtResource( 62 ), ExtResource( 63 ), ExtResource( 64 ), ExtResource( 65 ), ExtResource( 66 ), ExtResource( 67 ), ExtResource( 68 ), ExtResource( 69 ), ExtResource( 70 ), ExtResource( 71 ), ExtResource( 72 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 75 ), ExtResource( 76 ) ],
-"loop": true,
-"name": "New Anim 1",
-"speed": 22.0
-}, {
 "frames": [ ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 52 ) ],
 "loop": true,
 "name": "New Anim",
+"speed": 22.0
+}, {
+"frames": [ ExtResource( 54 ), ExtResource( 53 ), ExtResource( 55 ), ExtResource( 56 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 59 ), ExtResource( 60 ), ExtResource( 61 ), ExtResource( 62 ), ExtResource( 63 ), ExtResource( 64 ), ExtResource( 65 ), ExtResource( 66 ), ExtResource( 67 ), ExtResource( 68 ), ExtResource( 69 ), ExtResource( 70 ), ExtResource( 71 ), ExtResource( 72 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 75 ), ExtResource( 76 ) ],
+"loop": true,
+"name": "New Anim 1",
 "speed": 22.0
 } ]
 
@@ -193,6 +193,7 @@ script = ExtResource( 3 )
 position = Vector2( 481.274, 318.704 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ActorsAndTiles"]
+position = Vector2( -734.603, 320.763 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActorsAndTiles/StaticBody2D"]
 position = Vector2( 742.968, 344.075 )
@@ -202,41 +203,35 @@ shape = SubResource( 1 )
 position = Vector2( 303.579, 189.021 )
 frames = SubResource( 2 )
 animation = "New Anim 1"
-frame = 9
+frame = 18
 playing = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 497.818, 94.3819 )
 frames = SubResource( 3 )
-frame = 5
+frame = 6
 playing = true
 
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 432.469, 67.607 )
 frames = ExtResource( 101 )
 animation = "1_1"
-frame = 4
+frame = 13
 playing = true
 
 [node name="AnimatedSprite4" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 553.675, 78.902 )
 frames = SubResource( 4 )
-frame = 1
+frame = 6
 playing = true
 
 [node name="Civilian" parent="ActorsAndTiles" instance=ExtResource( 116 )]
 position = Vector2( 236.706, 314.248 )
 
-[node name="Civilian2" parent="ActorsAndTiles" instance=ExtResource( 116 )]
-position = Vector2( 299.557, 312.851 )
-
-[node name="Civilian3" parent="ActorsAndTiles" instance=ExtResource( 116 )]
-position = Vector2( 351.932, 243.017 )
-
 [node name="AnimatedSprite5" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 232.625, 149.642 )
 frames = SubResource( 5 )
-frame = 10
+frame = 13
 playing = true
 
 [node name="GroundTiles" type="Node2D" parent="."]

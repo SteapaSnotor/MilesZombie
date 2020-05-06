@@ -6,7 +6,7 @@ extends KinematicBody2D
 """
 
 var speed = 150
-var health = 100
+var health = 100 setget , get_health
 var facing_dir = Vector2.DOWN
 var current_path = []
 var current_target = Vector2.ZERO
@@ -17,16 +17,17 @@ var is_moving = false
 func run(from,to,delta,min_distance = 5):
 	#TODO: reuse paths
 	#TODO: maybe tha AI won't need offsets
-	#small mouse offset
-	var to_offset = Vector2(to.x,to.y+64) 
+	#small offset
+	var to_offset = Vector2(to.x-64,to.y+128) 
 	var from_offset = Vector2(from.x,from.y+128)
 	var dir = Vector2.ZERO
 	var current_tile = Vector2.ZERO
 	
 	if current_path.empty() or current_target != to:
 		current_path = pathfinding.find_path(from_offset,to_offset)
+		debug.highlight_path(current_path,get_parent())
 	
-	current_target = to_offset
+	current_target = to
 	
 	if current_path.size() > 1:
 		dir = (current_path[1] - from).normalized()
@@ -76,6 +77,9 @@ func attack(body):
 	
 func clear_current_path():
 	current_path = []
+
+func get_health():
+	return health
 
 #update the vectors that tells where the player is moving
 func update_facing(facing):

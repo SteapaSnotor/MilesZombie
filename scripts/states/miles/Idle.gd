@@ -38,8 +38,12 @@ func update(delta):
 func check_transitions():
 	#transition 0 = Walking
 	#transition 1 = Attacking
+	#transition 2 = Dead
 	
-	if controller.is_action_pressed('go') and not actor.is_close_to_selected_enemy():
+	if actor.get_health() <= 0:
+		next_state = transitions[2]
+		exited()
+	elif controller.is_action_pressed('go') and not actor.is_close_to_selected_enemy():
 		if actor.can_walk(controller.get_last_click()):
 			next_state = transitions[0]
 			exited()
