@@ -23,7 +23,7 @@ func run(from,to,delta,min_distance = 5):
 	var dir = Vector2.ZERO
 	var current_tile = Vector2.ZERO
 	
-	if current_path.empty() or current_target != to:
+	if current_path.empty() or current_target.distance_to(to) >20:
 		current_path = pathfinding.find_path(from_offset,to_offset)
 		debug.highlight_path(current_path,get_parent())
 	

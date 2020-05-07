@@ -15,6 +15,7 @@ onready var states_transitions= {
 
 var controller = null
 var selected_enemy = null setget , get_current_enemy
+var enemies_in_melee_range = []
 
 onready var animation_node = $Animations
 onready var fsm = $FSM
@@ -35,7 +36,6 @@ func init(controller):
 #player's animations
 func _process(delta):
 	update_animations()
-	
 	#debug only: show the current state
 	$State.text = fsm.get_current_state().name
 	#debug only: update health bar
@@ -75,6 +75,10 @@ func is_close_to_selected_enemy():
 	var ref = weakref(selected_enemy)
 	if ref.get_ref() == null: return false
 	
+	if enemies_in_melee_range.find(selected_enemy) != -1: return true
+	else: return false
+	
+	""" Old code used simple vector distance
 	if global_position.distance_to(selected_enemy.global_position) >min_attack_range:
 		return false
 	
@@ -83,6 +87,7 @@ func is_close_to_selected_enemy():
 	#if path.size() > 1: return false
 	
 	return true
+	"""
 	
 #TODO: test other stuff here e.g collisions
 func can_walk(to):
@@ -98,3 +103,12 @@ func on_enemy_selected(body):
 func on_enemy_unselected(body):
 	if selected_enemy == body: selected_enemy = null
 
+func _on_entered_melee_range(area):
+	var parent = area.get_parent()
+	if area.name == 'AIDetection' and enemies_in_melee_range.find(parent) == -1 :
+		enemies_in_melee_range.append(area.get_parent())
+	
+func _on_exited_melee_range(area):
+	var parent = area.get_parent()
+	if area.name == 'AIDetection' and enemies_in_melee_range.find(parent) != -1:
+		enemies_in_melee_range.remove(enemies_in_melee_range.find(parent))

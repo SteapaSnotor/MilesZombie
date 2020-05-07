@@ -231,13 +231,13 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 20.1754, 58.6322 )
+extents = Vector2( 39.4297, 71.0792 )
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 262.036
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 69.1376
+radius = 75.2301
 
 [node name="Civilian" type="KinematicBody2D" groups=[
 "Enemy",
@@ -250,21 +250,21 @@ position = Vector2( 0, -32 )
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
 frames = ExtResource( 19 )
 animation = "0_1"
-frame = 13
+frame = 8
 playing = true
 
 [node name="Running" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 2 )
 animation = "1_-1"
-frame = 18
+frame = 13
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = SubResource( 1 )
 animation = "-1_-1"
-frame = 4
+frame = 3
 playing = true
 
 [node name="FSM" parent="." instance=ExtResource( 16 )]
