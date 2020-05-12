@@ -58,7 +58,7 @@ func check_transitions():
 	if actor.get_health() <= 0:
 		next_state = transitions[2]
 		exited()
-	elif not actor.is_close_to_selected_enemy() and not controller.is_action_pressed('go'):
+	elif not controller.is_action_pressed('go'):
 		if has_attacked == true:
 			next_state = transitions[0]
 			exited()

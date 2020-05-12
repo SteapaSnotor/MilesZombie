@@ -9,9 +9,10 @@ signal selected
 signal unselected
 
 onready var state_transitions = {
-	$FSM/Idle:[$FSM/Running,$FSM/Attacking,$FSM/Dead],
+	$FSM/Idle:[$FSM/Running,$FSM/Attacking,$FSM/Dead,$FSM/Scared],
 	$FSM/Running:[$FSM/Idle,$FSM/Attacking],
 	$FSM/Attacking:[$FSM/Idle,$FSM/Running],
+	$FSM/Scared:[$FSM/Running],
 	$FSM/Dead:[]
 }
 
@@ -20,7 +21,7 @@ onready var animation_node = $Animations
 onready var current_animation_node = $Animations/Idle setget , get_current_animation_node
 
 var player = null setget , get_player
-var _is_aggressive = true setget , is_aggressive#TODO: set this on init
+export var _is_aggressive = true setget , is_aggressive#TODO: set this on init
 var _player_on_sight = false setget , is_seeing_player
 var _player_on_melee_range = false setget , is_player_on_melee_range
 
@@ -70,6 +71,9 @@ func update_animations():
 	
 	for anim in animation_node.get_children():
 		if anim.name != state: anim.hide()
+
+func look_at(pos):
+	update_facing((pos - global_position).normalized())
 
 func _on_mouse_entered():
 	emit_signal("selected",self)
