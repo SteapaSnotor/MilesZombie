@@ -5,6 +5,8 @@ extends "res://scripts/char_actor.gd"
 	Store data and deals with tons of player's systems e.g: FSM.
 """
 
+signal new_animation
+
 #the states that each state can transition to
 onready var states_transitions= {
 	$FSM/Idle:[$FSM/Moving,$FSM/Attacking,$FSM/Dead],
@@ -16,6 +18,7 @@ onready var states_transitions= {
 var controller = null
 var selected_enemy = null setget , get_current_enemy
 var enemies_in_melee_range = []
+var _previous_animation_node = null
 
 onready var animation_node = $Animations
 onready var fsm = $FSM
@@ -57,6 +60,10 @@ func update_animations():
 	anim_name = str(facing_dir.x) + '_' + str(facing_dir.y)
 	animation_node.get_node(state).play(anim_name)
 	animation_node.get_node(state).show()
+	
+	if animation_node.get_node(state) != _previous_animation_node:
+		_previous_animation_node = animation_node.get_node(state)
+		emit_signal("new_animation")
 	
 	for anim in animation_node.get_children():
 		if anim.name != state: anim.hide()

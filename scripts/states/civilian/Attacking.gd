@@ -15,11 +15,12 @@ var attacking_frame = 0
 const min_attack_dis = 64
 
 func init(actor,transitions):
+	yield(actor,'new_animation')
+	
 	self.actor = actor
 	self.transitions = transitions
-	self.attacking_frame = 10 #TODO: this must come from the actor
+	self.attacking_frame = 15 #TODO: this must come from the actor
 	self.anim_node = actor.get_current_animation_node()
-	
 	#signals
 	self.anim_node.connect('frame_changed',self,'attack')
 	

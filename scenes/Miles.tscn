@@ -19,7 +19,7 @@ radius = 29.1961
 radius = 292.607
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 51.4304
+radius = 39.6028
 
 [node name="Miles" type="KinematicBody2D" groups=[
 "Player",
@@ -31,28 +31,28 @@ script = ExtResource( 2 )
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
 frames = ExtResource( 7 )
 animation = "0_1"
-frame = 16
+frame = 18
 playing = true
 
 [node name="Moving" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 1 )
 animation = "-1_-1"
-frame = 17
+frame = 19
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 8 )
 animation = "1_-1"
-frame = 9
+frame = 11
 playing = true
 
 [node name="Dead" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 7 )
 animation = "0_1"
-frame = 15
+frame = 17
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

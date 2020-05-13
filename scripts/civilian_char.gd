@@ -7,6 +7,7 @@ extends "res://scripts/char_actor.gd"
 
 signal selected
 signal unselected
+signal new_animation
 
 onready var state_transitions = {
 	$FSM/Idle:[$FSM/Running,$FSM/Attacking,$FSM/Dead,$FSM/Scared],
@@ -24,6 +25,7 @@ var player = null setget , get_player
 export var _is_aggressive = true setget , is_aggressive#TODO: set this on init
 var _player_on_sight = false setget , is_seeing_player
 var _player_on_melee_range = false setget , is_player_on_melee_range
+var _previous_animation_node = null
 
 func init(player):
 	self.player = player
@@ -68,6 +70,10 @@ func update_animations():
 	animation_node.get_node(state).play(anim_name)
 	animation_node.get_node(state).show()
 	current_animation_node = animation_node.get_node(state)
+	
+	if current_animation_node != _previous_animation_node:
+		_previous_animation_node = current_animation_node
+		emit_signal("new_animation")
 	
 	for anim in animation_node.get_children():
 		if anim.name != state: anim.hide()
