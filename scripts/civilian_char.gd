@@ -23,6 +23,7 @@ onready var current_animation_node = $Animations/Idle setget , get_current_anima
 
 var player = null setget , get_player
 export var _is_aggressive = true setget , is_aggressive#TODO: set this on init
+export var id = 0
 var _player_on_sight = false setget , is_seeing_player
 var _player_on_melee_range = false setget , is_player_on_melee_range
 var _previous_animation_node = null
@@ -32,6 +33,7 @@ func init(player):
 	
 	#init systems
 	fsm.init(self,state_transitions)
+	animation_node.init('civilian',id)
 	
 	#TODO: animations according to ID
 

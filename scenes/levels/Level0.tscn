@@ -1,4 +1,4 @@
-[gd_scene load_steps=177 format=2]
+[gd_scene load_steps=239 format=2]
 
 [ext_resource path="res://scenes/Miles.tscn" type="PackedScene" id=1]
 [ext_resource path="res://resources/tiles/pathfinding/tilemap0.tmx" type="PackedScene" id=2]
@@ -169,6 +169,67 @@
 [ext_resource path="res://sprites/characters/johnny/running2/180/180.png0022.png" type="Texture" id=167]
 [ext_resource path="res://sprites/characters/johnny/running2/180/180.png0023.png" type="Texture" id=168]
 [ext_resource path="res://sprites/characters/johnny/running2/180/180.png0024.png" type="Texture" id=169]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0001.png" type="Texture" id=170]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0002.png" type="Texture" id=171]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0003.png" type="Texture" id=172]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0004.png" type="Texture" id=173]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0005.png" type="Texture" id=174]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0006.png" type="Texture" id=175]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0007.png" type="Texture" id=176]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0008.png" type="Texture" id=177]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0009.png" type="Texture" id=178]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0010.png" type="Texture" id=179]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0011.png" type="Texture" id=180]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0012.png" type="Texture" id=181]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0013.png" type="Texture" id=182]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0014.png" type="Texture" id=183]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0015.png" type="Texture" id=184]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0016.png" type="Texture" id=185]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0017.png" type="Texture" id=186]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0018.png" type="Texture" id=187]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0019.png" type="Texture" id=188]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0020.png" type="Texture" id=189]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0021.png" type="Texture" id=190]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0022.png" type="Texture" id=191]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0023.png" type="Texture" id=192]
+[ext_resource path="res://sprites/characters/barbara/running/90/90.png0024.png" type="Texture" id=193]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0002.png" type="Texture" id=194]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0003.png" type="Texture" id=195]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0001.png" type="Texture" id=196]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0004.png" type="Texture" id=197]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0005.png" type="Texture" id=198]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0006.png" type="Texture" id=199]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0007.png" type="Texture" id=200]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0008.png" type="Texture" id=201]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0009.png" type="Texture" id=202]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0010.png" type="Texture" id=203]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0011.png" type="Texture" id=204]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0012.png" type="Texture" id=205]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0013.png" type="Texture" id=206]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0014.png" type="Texture" id=207]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0015.png" type="Texture" id=208]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0016.png" type="Texture" id=209]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0017.png" type="Texture" id=210]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0018.png" type="Texture" id=211]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0019.png" type="Texture" id=212]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0020.png" type="Texture" id=213]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0021.png" type="Texture" id=214]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0022.png" type="Texture" id=215]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0023.png" type="Texture" id=216]
+[ext_resource path="res://sprites/characters/barbara/running/45/45.png0024.png" type="Texture" id=217]
+[ext_resource path="res://sprites/characters/barbara/idle/180/180.png0001.png" type="Texture" id=218]
+[ext_resource path="res://sprites/characters/barbara/idle/180/180.png0002.png" type="Texture" id=219]
+[ext_resource path="res://sprites/characters/barbara/idle/180/180.png0003.png" type="Texture" id=220]
+[ext_resource path="res://sprites/characters/barbara/idle/180/180.png0004.png" type="Texture" id=221]
+[ext_resource path="res://sprites/characters/barbara/idle/180/180.png0005.png" type="Texture" id=222]
+[ext_resource path="res://sprites/characters/barbara/idle/180/180.png0006.png" type="Texture" id=223]
+[ext_resource path="res://sprites/characters/barbara/idle/180/180.png0007.png" type="Texture" id=224]
+[ext_resource path="res://sprites/characters/barbara/idle/180/180.png0008.png" type="Texture" id=225]
+[ext_resource path="res://sprites/characters/barbara/idle/180/180.png0009.png" type="Texture" id=226]
+[ext_resource path="res://sprites/characters/barbara/idle/180/180.png0010.png" type="Texture" id=227]
+[ext_resource path="res://sprites/characters/barbara/idle/180/180.png0011.png" type="Texture" id=228]
+[ext_resource path="res://sprites/characters/barbara/idle/180/180.png0012.png" type="Texture" id=229]
+[ext_resource path="res://sprites/characters/barbara/idle/180/180.png0013.png" type="Texture" id=230]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 110.362
@@ -231,6 +292,24 @@ animations = [ {
 "speed": 24.0
 } ]
 
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 170 ), ExtResource( 171 ), ExtResource( 172 ), ExtResource( 173 ), ExtResource( 174 ), ExtResource( 175 ), ExtResource( 176 ), ExtResource( 177 ), ExtResource( 178 ), ExtResource( 179 ), ExtResource( 180 ), ExtResource( 181 ), ExtResource( 182 ), ExtResource( 183 ), ExtResource( 184 ), ExtResource( 185 ), ExtResource( 186 ), ExtResource( 187 ), ExtResource( 188 ), ExtResource( 189 ), ExtResource( 190 ), ExtResource( 191 ), ExtResource( 192 ), ExtResource( 193 ) ],
+"loop": true,
+"name": "default",
+"speed": 22.0
+}, {
+"frames": [ ExtResource( 196 ), ExtResource( 194 ), ExtResource( 195 ), ExtResource( 197 ), ExtResource( 198 ), ExtResource( 199 ), ExtResource( 200 ), ExtResource( 201 ), ExtResource( 202 ), ExtResource( 203 ), ExtResource( 204 ), ExtResource( 205 ), ExtResource( 206 ), ExtResource( 207 ), ExtResource( 208 ), ExtResource( 209 ), ExtResource( 210 ), ExtResource( 211 ), ExtResource( 212 ), ExtResource( 213 ), ExtResource( 214 ), ExtResource( 215 ), ExtResource( 216 ), ExtResource( 217 ) ],
+"loop": true,
+"name": "New Anim",
+"speed": 24.0
+}, {
+"frames": [ ExtResource( 218 ), ExtResource( 219 ), ExtResource( 220 ), ExtResource( 221 ), ExtResource( 222 ), ExtResource( 223 ), ExtResource( 224 ), ExtResource( 225 ), ExtResource( 226 ), ExtResource( 227 ), ExtResource( 228 ), ExtResource( 229 ), ExtResource( 230 ) ],
+"loop": true,
+"name": "New Anim 1",
+"speed": 24.0
+} ]
+
 [node name="Level0" type="Node2D"]
 script = ExtResource( 3 )
 
@@ -250,26 +329,26 @@ shape = SubResource( 1 )
 position = Vector2( 303.579, 189.021 )
 frames = SubResource( 2 )
 animation = "New Anim 1"
-frame = 23
+frame = 8
 playing = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 497.818, 94.3819 )
 frames = SubResource( 3 )
-frame = 22
+frame = 17
 playing = true
 
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 432.469, 67.607 )
 frames = ExtResource( 101 )
 animation = "1_1"
-frame = 18
+frame = 3
 playing = true
 
 [node name="AnimatedSprite4" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 553.675, 78.902 )
 frames = SubResource( 4 )
-frame = 7
+frame = 6
 playing = true
 
 [node name="Civilian" parent="ActorsAndTiles" instance=ExtResource( 116 )]
@@ -279,24 +358,44 @@ position = Vector2( 93.8664, 144.201 )
 position = Vector2( 479.68, 525.004 )
 _is_aggressive = false
 
+[node name="Civilian3" parent="ActorsAndTiles" instance=ExtResource( 116 )]
+position = Vector2( 374.195, 386.115 )
+_is_aggressive = false
+id = 1
+
 [node name="AnimatedSprite5" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 232.625, 149.642 )
 frames = SubResource( 5 )
-frame = 13
+frame = 16
 playing = true
 
 [node name="AnimatedSprite6" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 532.789, 263.889 )
 frames = SubResource( 6 )
+frame = 6
 playing = true
 
 [node name="AnimatedSprite7" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 646.363, 148.647 )
 frames = SubResource( 7 )
-frame = 12
+frame = 7
+playing = true
+
+[node name="AnimatedSprite8" type="AnimatedSprite" parent="ActorsAndTiles"]
+position = Vector2( 214.94, 439.402 )
+frames = SubResource( 8 )
+frame = 14
+playing = true
+
+[node name="AnimatedSprite9" type="AnimatedSprite" parent="ActorsAndTiles"]
+position = Vector2( 127.876, 402.672 )
+frames = SubResource( 8 )
+animation = "New Anim 1"
+frame = 6
 playing = true
 
 [node name="GroundTiles" type="Node2D" parent="."]
+visible = false
 
 [node name="Pathfinding" parent="GroundTiles" instance=ExtResource( 2 )]
 z_index = -1
