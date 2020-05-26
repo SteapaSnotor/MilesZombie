@@ -1,4 +1,4 @@
-[gd_scene load_steps=239 format=2]
+[gd_scene load_steps=272 format=2]
 
 [ext_resource path="res://scenes/Miles.tscn" type="PackedScene" id=1]
 [ext_resource path="res://resources/tiles/pathfinding/tilemap0.tmx" type="PackedScene" id=2]
@@ -230,6 +230,38 @@
 [ext_resource path="res://sprites/characters/barbara/idle/180/180.png0011.png" type="Texture" id=228]
 [ext_resource path="res://sprites/characters/barbara/idle/180/180.png0012.png" type="Texture" id=229]
 [ext_resource path="res://sprites/characters/barbara/idle/180/180.png0013.png" type="Texture" id=230]
+[ext_resource path="res://scenes/PlayerCamera.tscn" type="PackedScene" id=231]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0001.png" type="Texture" id=232]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0002.png" type="Texture" id=233]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0003.png" type="Texture" id=234]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0004.png" type="Texture" id=235]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0005.png" type="Texture" id=236]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0006.png" type="Texture" id=237]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0007.png" type="Texture" id=238]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0008.png" type="Texture" id=239]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0009.png" type="Texture" id=240]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0010.png" type="Texture" id=241]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0011.png" type="Texture" id=242]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0012.png" type="Texture" id=243]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0013.png" type="Texture" id=244]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0014.png" type="Texture" id=245]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0015.png" type="Texture" id=246]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0016.png" type="Texture" id=247]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0017.png" type="Texture" id=248]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0018.png" type="Texture" id=249]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0019.png" type="Texture" id=250]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0020.png" type="Texture" id=251]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0021.png" type="Texture" id=252]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0022.png" type="Texture" id=253]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0023.png" type="Texture" id=254]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0024.png" type="Texture" id=255]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0025.png" type="Texture" id=256]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0026.png" type="Texture" id=257]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0027.png" type="Texture" id=258]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0028.png" type="Texture" id=259]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0029.png" type="Texture" id=260]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0030.png" type="Texture" id=261]
+[ext_resource path="res://sprites/characters/barbara/hit/180/180.png0031.png" type="Texture" id=262]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 110.362
@@ -310,6 +342,14 @@ animations = [ {
 "speed": 24.0
 } ]
 
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ ExtResource( 232 ), ExtResource( 233 ), ExtResource( 234 ), ExtResource( 235 ), ExtResource( 236 ), ExtResource( 237 ), ExtResource( 238 ), ExtResource( 239 ), ExtResource( 240 ), ExtResource( 241 ), ExtResource( 242 ), ExtResource( 243 ), ExtResource( 244 ), ExtResource( 245 ), ExtResource( 246 ), ExtResource( 247 ), ExtResource( 248 ), ExtResource( 249 ), ExtResource( 250 ), ExtResource( 251 ), ExtResource( 252 ), ExtResource( 253 ), ExtResource( 254 ), ExtResource( 255 ), ExtResource( 256 ), ExtResource( 257 ), ExtResource( 258 ), ExtResource( 259 ), ExtResource( 260 ), ExtResource( 261 ), ExtResource( 262 ) ],
+"loop": true,
+"name": "default",
+"speed": 44.0
+} ]
+
 [node name="Level0" type="Node2D"]
 script = ExtResource( 3 )
 
@@ -329,26 +369,26 @@ shape = SubResource( 1 )
 position = Vector2( 303.579, 189.021 )
 frames = SubResource( 2 )
 animation = "New Anim 1"
-frame = 8
+frame = 15
 playing = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 497.818, 94.3819 )
 frames = SubResource( 3 )
-frame = 17
+frame = 16
 playing = true
 
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 432.469, 67.607 )
 frames = ExtResource( 101 )
 animation = "1_1"
-frame = 3
+frame = 10
 playing = true
 
 [node name="AnimatedSprite4" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 553.675, 78.902 )
 frames = SubResource( 4 )
-frame = 6
+frame = 3
 playing = true
 
 [node name="Civilian" parent="ActorsAndTiles" instance=ExtResource( 116 )]
@@ -359,32 +399,32 @@ position = Vector2( 479.68, 525.004 )
 _is_aggressive = false
 
 [node name="Civilian3" parent="ActorsAndTiles" instance=ExtResource( 116 )]
-position = Vector2( 374.195, 386.115 )
+position = Vector2( 334.195, 388.22 )
 _is_aggressive = false
 id = 1
 
 [node name="AnimatedSprite5" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 232.625, 149.642 )
 frames = SubResource( 5 )
-frame = 16
+frame = 7
 playing = true
 
 [node name="AnimatedSprite6" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 532.789, 263.889 )
 frames = SubResource( 6 )
-frame = 6
+frame = 5
 playing = true
 
 [node name="AnimatedSprite7" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 646.363, 148.647 )
 frames = SubResource( 7 )
-frame = 7
+frame = 6
 playing = true
 
 [node name="AnimatedSprite8" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 214.94, 439.402 )
 frames = SubResource( 8 )
-frame = 14
+frame = 21
 playing = true
 
 [node name="AnimatedSprite9" type="AnimatedSprite" parent="ActorsAndTiles"]
@@ -394,6 +434,12 @@ animation = "New Anim 1"
 frame = 6
 playing = true
 
+[node name="AnimatedSprite10" type="AnimatedSprite" parent="ActorsAndTiles"]
+position = Vector2( 910.459, 280.771 )
+frames = SubResource( 9 )
+frame = 21
+playing = true
+
 [node name="GroundTiles" type="Node2D" parent="."]
 visible = false
 
@@ -401,3 +447,5 @@ visible = false
 z_index = -1
 
 [node name="PlayerController" parent="." instance=ExtResource( 4 )]
+
+[node name="PlayerCamera" parent="." instance=ExtResource( 231 )]

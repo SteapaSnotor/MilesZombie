@@ -13,7 +13,8 @@ onready var state_transitions = {
 	$FSM/Idle:[$FSM/Running,$FSM/Attacking,$FSM/Dead,$FSM/Scared],
 	$FSM/Running:[$FSM/Idle,$FSM/Attacking],
 	$FSM/Attacking:[$FSM/Idle,$FSM/Running],
-	$FSM/Scared:[$FSM/Running],
+	$FSM/Scared:[$FSM/Running,$FSM/Hit,$FSM/Dead],
+	$FSM/Hit:[$FSM/Scared,$FSM/Running,$FSM/Dead],
 	$FSM/Dead:[]
 }
 

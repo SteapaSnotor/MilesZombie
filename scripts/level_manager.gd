@@ -7,6 +7,7 @@ extends Node2D
 signal initialized
 
 var controller = null
+var camera = null
 var player = null
 
 #for debug only, remove this before shipping.
@@ -28,8 +29,13 @@ func init():
 	player = $ActorsAndTiles/Miles
 	player.init(controller)
 	
+	#initialize the player's camera
+	camera = $PlayerCamera
+	camera.init(player)
+	
 	#initialize the enemies
 	init_AI()
+	
 	
 	emit_signal("initialized")
 

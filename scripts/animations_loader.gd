@@ -1,4 +1,5 @@
 extends Node2D
+tool
 
 """
 	Load animations data for actors.
@@ -16,7 +17,8 @@ var civilian_anims = {
 	1:{
 		'Idle':_pth + '/barbara_idle.tres',
 		'Running':_pth + '/barbara_running.tres',
-		'Scared':_pth + '/barbara_scared.tres'
+		'Scared':_pth + '/barbara_scared.tres',
+		'Hit':_pth + '/barbara_hit.tres'
 	}
 }
 

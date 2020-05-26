@@ -5,8 +5,10 @@ extends KinematicBody2D
 	This includes enemies.
 """
 
+signal attacked
+
 var speed = 150
-var health = 100 setget , get_health
+var health = 100 setget set_health, get_health
 var facing_dir = Vector2.DOWN
 var current_path = []
 var current_target = Vector2.ZERO
@@ -25,7 +27,7 @@ func run(from,to,delta,min_distance = 5):
 	
 	if current_path.empty() or current_target.distance_to(to) >20:
 		current_path = pathfinding.find_path(from_offset,to_offset)
-		debug.highlight_path(current_path,get_parent())
+		#debug.highlight_path(current_path,get_parent())
 	
 	current_target = to
 	
@@ -80,6 +82,10 @@ func clear_current_path():
 
 func get_health():
 	return health
+
+func set_health(value):
+	health = value
+	emit_signal("attacked")
 
 #update the vectors that tells where the player is moving
 func update_facing(facing):
