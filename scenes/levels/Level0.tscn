@@ -375,7 +375,7 @@ playing = true
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 497.818, 94.3819 )
 frames = SubResource( 3 )
-frame = 16
+frame = 14
 playing = true
 
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="ActorsAndTiles"]
@@ -388,7 +388,7 @@ playing = true
 [node name="AnimatedSprite4" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 553.675, 78.902 )
 frames = SubResource( 4 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="Civilian" parent="ActorsAndTiles" instance=ExtResource( 116 )]
@@ -406,19 +406,19 @@ id = 1
 [node name="AnimatedSprite5" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 232.625, 149.642 )
 frames = SubResource( 5 )
-frame = 7
+frame = 9
 playing = true
 
 [node name="AnimatedSprite6" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 532.789, 263.889 )
 frames = SubResource( 6 )
-frame = 5
+frame = 3
 playing = true
 
 [node name="AnimatedSprite7" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 646.363, 148.647 )
 frames = SubResource( 7 )
-frame = 6
+frame = 4
 playing = true
 
 [node name="AnimatedSprite8" type="AnimatedSprite" parent="ActorsAndTiles"]
@@ -431,17 +431,16 @@ playing = true
 position = Vector2( 127.876, 402.672 )
 frames = SubResource( 8 )
 animation = "New Anim 1"
-frame = 6
+frame = 12
 playing = true
 
 [node name="AnimatedSprite10" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 910.459, 280.771 )
 frames = SubResource( 9 )
-frame = 21
+frame = 9
 playing = true
 
 [node name="GroundTiles" type="Node2D" parent="."]
-visible = false
 
 [node name="Pathfinding" parent="GroundTiles" instance=ExtResource( 2 )]
 z_index = -1

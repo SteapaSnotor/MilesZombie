@@ -37,38 +37,37 @@ position = Vector2( 0, -32 )
 script = ExtResource( 9 )
 
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
-visible = false
 frames = ExtResource( 19 )
 animation = "0_1"
-frame = 7
+frame = 3
 playing = true
 
 [node name="Running" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 2 )
 animation = "1_-1"
-frame = 5
+frame = 19
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 7 )
 animation = "-1_-1"
-frame = 9
+frame = 3
 playing = true
 
 [node name="Scared" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 8 )
 animation = "1_-1"
-frame = 3
+frame = 2
 playing = true
 
 [node name="Hit" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 10 )
 animation = "1_-1"
-frame = 23
+frame = 3
 playing = true
 
 [node name="FSM" parent="." instance=ExtResource( 16 )]

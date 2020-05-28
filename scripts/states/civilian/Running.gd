@@ -29,15 +29,28 @@ func update(delta):
 func check_transitions():
 	#transition 0 = idle
 	#transition 1 = attacking
+	#transition 2 = scared
 	if not actor.is_moving and actor.is_aggressive():
 		next_state = transitions[1]
 		exit()
+	elif not actor.is_moving and not actor.is_aggressive():
+		next_state = transitions[2]
+		exit()
+	else: return
 	
 
 func set_target():
 	if actor.is_aggressive():
 		target = actor.get_player().get_global_position()
-	else: pass #TODO
+	elif not actor.is_aggressive() and target == null:
+		pass #TODO
+		var reflected = actor.get_global_position() - actor.get_player().get_global_position()
+		reflected = reflected.normalized() * 5
+		var pos_reflected = actor.get_global_position() * reflected
+		
+		target = pathfinding.get_closest_tile(pos_reflected)
+		print(target)
+	else: return
 
 func exit():
 	

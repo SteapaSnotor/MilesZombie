@@ -11,7 +11,7 @@ signal new_animation
 
 onready var state_transitions = {
 	$FSM/Idle:[$FSM/Running,$FSM/Attacking,$FSM/Dead,$FSM/Scared],
-	$FSM/Running:[$FSM/Idle,$FSM/Attacking],
+	$FSM/Running:[$FSM/Idle,$FSM/Attacking,$FSM/Scared],
 	$FSM/Attacking:[$FSM/Idle,$FSM/Running],
 	$FSM/Scared:[$FSM/Running,$FSM/Hit,$FSM/Dead],
 	$FSM/Hit:[$FSM/Scared,$FSM/Running,$FSM/Dead],
