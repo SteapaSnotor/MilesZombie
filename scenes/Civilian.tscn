@@ -9,7 +9,7 @@
 [ext_resource path="res://resources/animations_data/johnny_attacking.tres" type="SpriteFrames" id=7]
 [ext_resource path="res://resources/animations_data/johnny_scared.tres" type="SpriteFrames" id=8]
 [ext_resource path="res://scripts/animations_loader.gd" type="Script" id=9]
-[ext_resource path="res://resources/animations_data/barbara_hit.tres" type="SpriteFrames" id=10]
+[ext_resource path="res://resources/animations_data/johnny_hit.tres" type="SpriteFrames" id=10]
 [ext_resource path="res://scripts/states/civilian/Hit.gd" type="Script" id=11]
 [ext_resource path="res://scenes/FSM.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scripts/states/civilian/Idle.gd" type="Script" id=17]
@@ -18,7 +18,7 @@
 [ext_resource path="res://scripts/states/civilian/Scared.gd" type="Script" id=187]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 39.4297, 71.0792 )
+extents = Vector2( 78.9309, 91.4797 )
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 262.036
@@ -39,35 +39,33 @@ script = ExtResource( 9 )
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
 frames = ExtResource( 19 )
 animation = "0_1"
-frame = 3
+frame = 10
 playing = true
 
 [node name="Running" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 2 )
 animation = "1_-1"
-frame = 19
+frame = 18
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 7 )
 animation = "-1_-1"
-frame = 3
 playing = true
 
 [node name="Scared" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 8 )
 animation = "1_-1"
-frame = 2
 playing = true
 
 [node name="Hit" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 10 )
 animation = "1_-1"
-frame = 3
+frame = 11
 playing = true
 
 [node name="FSM" parent="." instance=ExtResource( 16 )]

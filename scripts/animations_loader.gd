@@ -11,7 +11,8 @@ var civilian_anims = {
 		'Idle':_pth + '/johnny_idle.tres',
 		'Running':_pth + '/johnny_running.tres',
 		'Attacking':_pth + '/johnny_attacking.tres',
-		'Scared':_pth + '/johnny_scared.tres'
+		'Scared':_pth + '/johnny_scared.tres',
+		'Hit':_pth + '/johnny_hit.tres'
 	},
 	
 	1:{
