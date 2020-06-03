@@ -112,10 +112,10 @@ func on_enemy_unselected(body):
 
 func _on_entered_melee_range(area):
 	var parent = area.get_parent()
-	if area.name == 'AIDetection' and enemies_in_melee_range.find(parent) == -1 :
+	if area.name == 'MeleeRange' and enemies_in_melee_range.find(parent) == -1 :
 		enemies_in_melee_range.append(area.get_parent())
 	
 func _on_exited_melee_range(area):
 	var parent = area.get_parent()
-	if area.name == 'AIDetection' and enemies_in_melee_range.find(parent) != -1:
+	if area.name == 'MeleeRange' and enemies_in_melee_range.find(parent) != -1:
 		enemies_in_melee_range.remove(enemies_in_melee_range.find(parent))
