@@ -11,8 +11,8 @@ signal new_animation
 
 onready var state_transitions = {
 	$FSM/Idle:[$FSM/Running,$FSM/Attacking,$FSM/Dead,$FSM/Scared],
-	$FSM/Running:[$FSM/Idle,$FSM/Attacking,$FSM/Scared],
-	$FSM/Attacking:[$FSM/Idle,$FSM/Running],
+	$FSM/Running:[$FSM/Idle,$FSM/Attacking,$FSM/Scared,$FSM/Dead],
+	$FSM/Attacking:[$FSM/Idle,$FSM/Running,$FSM/Dead],
 	$FSM/Scared:[$FSM/Running,$FSM/Hit,$FSM/Dead],
 	$FSM/Hit:[$FSM/Scared,$FSM/Running,$FSM/Dead],
 	$FSM/Dead:[]
@@ -70,16 +70,22 @@ func update_animations():
 	var state = fsm.get_current_state().name
 	
 	anim_name = str(facing_dir.x) + '_' + str(facing_dir.y)
-	animation_node.get_node(state).play(anim_name)
-	animation_node.get_node(state).show()
 	current_animation_node = animation_node.get_node(state)
+	
+	if current_animation_node.get_animation() != anim_name or current_animation_node != _previous_animation_node:
+		#play it only once
+		current_animation_node.play(anim_name)
+		current_animation_node.show()
 	
 	if current_animation_node != _previous_animation_node:
 		_previous_animation_node = current_animation_node
 		emit_signal("new_animation")
 	
 	for anim in animation_node.get_children():
-		if anim.name != state: anim.hide()
+		if anim.name != state: 
+			anim.hide()
+			anim.stop()
+			anim.set_frame(0)
 
 func look_at(pos):
 	update_facing((pos - global_position).normalized())

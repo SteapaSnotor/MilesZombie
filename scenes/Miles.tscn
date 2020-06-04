@@ -31,28 +31,28 @@ script = ExtResource( 2 )
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
 frames = ExtResource( 7 )
 animation = "0_1"
-frame = 16
+frame = 3
 playing = true
 
 [node name="Moving" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 1 )
 animation = "-1_-1"
-frame = 17
+frame = 4
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 8 )
 animation = "1_-1"
-frame = 3
+frame = 8
 playing = true
 
 [node name="Dead" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 7 )
 animation = "0_1"
-frame = 15
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

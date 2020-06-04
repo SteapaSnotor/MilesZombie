@@ -47,7 +47,7 @@ func run(from,to,delta,min_distance = 5):
 	global_position += dir * speed * delta 
 	update_facing(dir)
 	
-	debug.highlight_path(current_path,get_parent())
+	#debug.highlight_path(current_path,get_parent())
 	
 	return true
 
@@ -95,7 +95,7 @@ func update_facing(facing):
 	
 	if real_facing.x == -0: real_facing.x = 0
 	if real_facing.y == -0: real_facing.y = 0
-	
+
 	if real_facing.x > 0: real_facing.x = 1.0
 	elif real_facing.x < 0: real_facing.x = -1.0
 	

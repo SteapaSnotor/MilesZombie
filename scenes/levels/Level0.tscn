@@ -100,18 +100,19 @@ id = 1
 [node name="AnimatedSprite" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 725.081, 429.879 )
 frames = SubResource( 2 )
-frame = 24
+frame = 9
 playing = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 897.848, 293.841 )
 frames = SubResource( 3 )
-frame = 9
+frame = 8
 playing = true
 
 [node name="GroundTiles" type="Node2D" parent="."]
 
 [node name="Pathfinding" parent="GroundTiles" instance=ExtResource( 2 )]
+visible = false
 z_index = -1
 
 [node name="PlayerController" parent="." instance=ExtResource( 4 )]

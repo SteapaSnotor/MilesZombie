@@ -20,6 +20,7 @@ func init(actor,transitions):
 	self.transitions = transitions
 	self.hit_frame = 8 #TODO: this must come from the actor
 	self.anim_node = actor.get_current_animation_node()
+	self.anim_node.set_frame(0)
 	
 	#signals
 	actor.connect('attacked',self,'set_new_hit')

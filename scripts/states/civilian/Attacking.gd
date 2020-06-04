@@ -38,7 +38,11 @@ func attack():
 func check_transitions():
 	#transition 0 = Idle
 	#transition 1 = Running
-	if not actor.is_seeing_player():
+	#transition 2 = Dead
+	if actor.health <= 0:
+		next_state = transitions[2]
+		exit()
+	elif not actor.is_seeing_player():
 		next_state = transitions[0]
 		exit()
 	elif not actor.is_player_on_melee_range():

@@ -9,6 +9,7 @@ signal exited
 var actor = null
 var target = null
 var next_state = null
+var was_attacked = false
 var transitions = []
 
 func init(actor,transitions):
@@ -16,6 +17,9 @@ func init(actor,transitions):
 	self.transitions = transitions
 	
 	set_target()
+	
+	#signals
+	actor.connect('attacked',self,'set_attacked')
 
 func update(delta):
 	if actor == null: return
@@ -30,7 +34,14 @@ func check_transitions():
 	#transition 0 = idle
 	#transition 1 = attacking
 	#transition 2 = scared
-	if not actor.is_moving and actor.is_aggressive():
+	#transition 3 = dead
+	if actor.get_health() <= 0:
+		next_state = transitions[3]
+		exit()
+	elif not actor.is_moving and actor.is_aggressive():
+		next_state = transitions[1]
+		exit()
+	elif actor.is_moving and actor.is_aggressive() and was_attacked:
 		next_state = transitions[1]
 		exit()
 	elif not actor.is_moving and not actor.is_aggressive():
@@ -49,11 +60,16 @@ func set_target():
 		var pos_reflected = actor.get_global_position() * reflected
 		
 		target = pathfinding.get_closest_tile(pos_reflected)
-		print(target)
 	else: return
 
+func set_attacked():
+	was_attacked = true
+
 func exit():
+	#disconnect signals
+	actor.disconnect('attacked',self,'set_attacked')
 	
 	self.actor = null
 	self.target = null
+	self.was_attacked = false
 	emit_signal("exited",next_state)

@@ -33,6 +33,8 @@ func init(actor,transitions):
 func update(delta):
 	if actor == null: return
 	
+	
+	
 	#update the facing position of the player in case he changes it
 	actor.update_facing((controller.get_last_click() - actor.global_position).normalized())
 	#actor.attack(controller.get_last_click_special())
