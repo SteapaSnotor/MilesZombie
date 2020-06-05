@@ -13,6 +13,7 @@ var civilian_anims = {
 		'Attacking':_pth + '/johnny_attacking.tres',
 		'Scared':_pth + '/johnny_scared.tres',
 		'Hit':_pth + '/johnny_hit.tres',
+		'Transforming':_pth + '/johnny_transforming.tres',
 		'Dead':_pth + '/johnny_dead.tres'
 	},
 	

@@ -8,13 +8,15 @@ extends "res://scripts/char_actor.gd"
 signal selected
 signal unselected
 signal new_animation
+signal infected
 
 onready var state_transitions = {
 	$FSM/Idle:[$FSM/Running,$FSM/Attacking,$FSM/Dead,$FSM/Scared],
 	$FSM/Running:[$FSM/Idle,$FSM/Attacking,$FSM/Scared,$FSM/Dead],
 	$FSM/Attacking:[$FSM/Idle,$FSM/Running,$FSM/Dead],
-	$FSM/Scared:[$FSM/Running,$FSM/Hit,$FSM/Dead],
-	$FSM/Hit:[$FSM/Scared,$FSM/Running,$FSM/Dead],
+	$FSM/Scared:[$FSM/Running,$FSM/Hit,$FSM/Transforming,$FSM/Dead],
+	$FSM/Hit:[$FSM/Scared,$FSM/Running,$FSM/Transforming,$FSM/Dead],
+	$FSM/Transforming:[$FSM/Dead],
 	$FSM/Dead:[]
 }
 
@@ -89,6 +91,9 @@ func update_animations():
 
 func look_at(pos):
 	update_facing((pos - global_position).normalized())
+
+func do_infection():
+	emit_signal("infected")
 
 func _on_mouse_entered():
 	emit_signal("selected",self)

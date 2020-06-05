@@ -11,7 +11,8 @@ signal new_animation
 onready var states_transitions= {
 	$FSM/Idle:[$FSM/Moving,$FSM/Attacking,$FSM/Dead],
 	$FSM/Moving:[$FSM/Idle,$FSM/Attacking,$FSM/Dead],
-	$FSM/Attacking:[$FSM/Idle,$FSM/Moving,$FSM/Dead],
+	$FSM/Attacking:[$FSM/Idle,$FSM/Moving,$FSM/Biting,$FSM/Dead],
+	$FSM/Biting:[$FSM/Idle],
 	$FSM/Dead:[]
 }
 
@@ -85,16 +86,11 @@ func is_close_to_selected_enemy():
 	if enemies_in_melee_range.find(selected_enemy) != -1: return true
 	else: return false
 	
-	""" Old code used simple vector distance
-	if global_position.distance_to(selected_enemy.global_position) >min_attack_range:
-		return false
+func is_selected_enemy_vulnerable():
+	if selected_enemy == null: return false
 	
-	#this may be too perfomance heavy
-	#var path = pathfinding.find_path(global_position,selected_enemy.global_position)
-	#if path.size() > 1: return false
 	
-	return true
-	"""
+	return !selected_enemy.is_aggressive()
 	
 #TODO: test other stuff here e.g collisions
 func can_walk(to):

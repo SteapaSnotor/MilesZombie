@@ -29,9 +29,10 @@ func update(delta):
 func check_transitions():
 	#transition 0 = Running
 	#transition 1 = Hit
-	#transition 2 = Dead
+	#transition 2 = Transforming
+	#transition 3 = Dead
 	if actor.get_health() <= 0:
-		next_state = transitions[2]
+		next_state = transitions[3]
 		exit()
 	elif under_attack:
 		next_state = transitions[1]

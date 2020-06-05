@@ -76,7 +76,7 @@ func attack(body):
 	#var dir = (body - global_position).normalized()
 	#update_facing(dir)
 	
-	
+
 func clear_current_path():
 	current_path = []
 

@@ -33,7 +33,10 @@ func init(actor,transitions):
 func update(delta):
 	if actor == null: return
 	
-	
+	#if actor.get_current_enemy() != null:
+	#	var test_pos = actor.get_current_enemy().global_position
+	#	test_pos.y -= 20
+	#	actor.update_facing((test_pos - actor.global_position).normalized())
 	
 	#update the facing position of the player in case he changes it
 	actor.update_facing((controller.get_last_click() - actor.global_position).normalized())
@@ -53,19 +56,26 @@ func attack():
 		actor.attack(actor.selected_enemy)
 
 func check_transitions():
+	#$FSM/Idle,$FSM/Moving,$FSM/Biting,$FSM/Dead
 	#transition 0 = Idle
 	#transition 1 = Moving
-	#transition 2 = Dead
+	#transition 2 = Biting
+	#transition 3 = Dead
 	
 	if actor.get_health() <= 0:
-		next_state = transitions[2]
+		next_state = transitions[3]
 		exited()
-	elif not controller.is_action_pressed('go'):
+	elif not controller.is_action_pressed('go') and not controller.is_action_pressed('special'):
 		if has_attacked == true:
 			next_state = transitions[0]
 			exited()
 	elif not actor.is_close_to_selected_enemy() and controller.is_action_pressed('go'):
+		if has_attacked == true:
 			next_state = transitions[1]
+			exited()
+	elif actor.is_close_to_selected_enemy() and controller.is_action_pressed('special'):
+		if actor.is_selected_enemy_vulnerable():
+			next_state = transitions[2]
 			exited()
 	else: return
 	
