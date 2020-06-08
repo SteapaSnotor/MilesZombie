@@ -1,4 +1,4 @@
-[gd_scene load_steps=167 format=2]
+[gd_scene load_steps=180 format=2]
 
 [ext_resource path="res://scenes/Miles.tscn" type="PackedScene" id=1]
 [ext_resource path="res://resources/tiles/pathfinding/tilemap0.tmx" type="PackedScene" id=2]
@@ -160,6 +160,18 @@
 [ext_resource path="res://sprites/characters/miles/bitting/45/45.png0020.png" type="Texture" id=158]
 [ext_resource path="res://sprites/characters/miles/bitting/45/45.png0021.png" type="Texture" id=159]
 [ext_resource path="res://sprites/ui/evil-hand (1).png" type="Texture" id=160]
+[ext_resource path="res://sprites/prototype_phase/TEST.exr" type="Texture" id=161]
+[ext_resource path="res://sprites/characters/johnny/zombieIdle/180/180.png0011.png" type="Texture" id=163]
+[ext_resource path="res://sprites/characters/johnny/zombieIdle/180/180.png0010.png" type="Texture" id=164]
+[ext_resource path="res://sprites/characters/johnny/zombieIdle/180/180.png0009.png" type="Texture" id=165]
+[ext_resource path="res://sprites/characters/johnny/zombieIdle/180/180.png0008.png" type="Texture" id=166]
+[ext_resource path="res://sprites/characters/johnny/zombieIdle/180/180.png0007.png" type="Texture" id=167]
+[ext_resource path="res://sprites/characters/johnny/zombieIdle/180/180.png0006.png" type="Texture" id=168]
+[ext_resource path="res://sprites/characters/johnny/zombieIdle/180/180.png0005.png" type="Texture" id=169]
+[ext_resource path="res://sprites/characters/johnny/zombieIdle/180/180.png0004.png" type="Texture" id=170]
+[ext_resource path="res://sprites/characters/johnny/zombieIdle/180/180.png0003.png" type="Texture" id=171]
+[ext_resource path="res://sprites/characters/johnny/zombieIdle/180/180.png0001.png" type="Texture" id=172]
+[ext_resource path="res://sprites/characters/johnny/zombieIdle/180/180.png0002.png" type="Texture" id=173]
 [ext_resource path="res://scenes/PlayerCamera.tscn" type="PackedScene" id=231]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -207,6 +219,14 @@ animations = [ {
 "speed": 18.0
 } ]
 
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 172 ), ExtResource( 173 ), ExtResource( 171 ), ExtResource( 170 ), ExtResource( 169 ), ExtResource( 168 ), ExtResource( 167 ), ExtResource( 166 ), ExtResource( 165 ), ExtResource( 164 ), ExtResource( 163 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
 [node name="Level0" type="Node2D"]
 script = ExtResource( 3 )
 
@@ -224,6 +244,7 @@ shape = SubResource( 1 )
 
 [node name="Civilian" parent="ActorsAndTiles" instance=ExtResource( 116 )]
 position = Vector2( 93.8664, 144.201 )
+id = 2
 
 [node name="Civilian2" parent="ActorsAndTiles" instance=ExtResource( 116 )]
 position = Vector2( 479.68, 525.004 )
@@ -237,20 +258,19 @@ id = 1
 [node name="AnimatedSprite" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 725.081, 429.879 )
 frames = SubResource( 2 )
-frame = 19
+frame = 22
 playing = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 897.848, 293.841 )
 frames = SubResource( 3 )
-frame = 5
 playing = true
 
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="ActorsAndTiles"]
 position = Vector2( 754.669, 123.821 )
 frames = SubResource( 4 )
 animation = "New Anim"
-frame = 16
+frame = 8
 playing = true
 
 [node name="Sprite" type="Sprite" parent="ActorsAndTiles"]
@@ -261,7 +281,17 @@ texture = ExtResource( 160 )
 position = Vector2( 751.675, 41.1716 )
 frames = SubResource( 5 )
 animation = "New Anim"
-frame = 14
+frame = 23
+playing = true
+
+[node name="Sprite2" type="Sprite" parent="ActorsAndTiles"]
+position = Vector2( 709.599, 234.265 )
+texture = ExtResource( 161 )
+
+[node name="AnimatedSprite5" type="AnimatedSprite" parent="ActorsAndTiles"]
+position = Vector2( 975.958, 307.787 )
+frames = SubResource( 6 )
+frame = 3
 playing = true
 
 [node name="GroundTiles" type="Node2D" parent="."]
