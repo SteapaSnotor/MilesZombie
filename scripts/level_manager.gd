@@ -10,6 +10,9 @@ var controller = null
 var camera = null
 var player = null
 
+#time (in seconds) to an actor to become a zombie.
+const infection_time = 4
+
 #for debug only, remove this before shipping.
 func _ready():
 	if get_tree().get_root().get_children().find(self) != -1:
@@ -45,6 +48,28 @@ func init_AI():
 			object.init(player)
 			object.connect('selected',player,'on_enemy_selected')
 			object.connect('unselected',player,'on_enemy_unselected')
+			object.connect('infected',self,'add_zombie')
+			
+func add_zombie(at,id=0,actor=null,timer=null):
+	if timer == null:
+		var _timer = Timer.new()
+		_timer.wait_time = infection_time
+		_timer.one_shot = true
+		_timer.connect('timeout',self,'add_zombie',[at,id,actor,_timer])
+		_timer.name = 'infection_timer'
+		if actor == null: add_child(_timer)
+		else: actor.add_child(_timer)
+		
+		_timer.start()
+	else:
+		#spawn the zombie here
+		var zombie = preload('res://scenes/Zombie.tscn').instance()
+		#TODO: set zombie data 
+		add_child(zombie)
+		zombie.global_position = at
+		
+		if actor != null: actor.queue_free()
+		timer.queue_free()
 
 func get_path_map():
 	return $GroundTiles/Pathfinding.get_child(0)

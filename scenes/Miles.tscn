@@ -243,35 +243,35 @@ script = ExtResource( 2 )
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
 frames = ExtResource( 7 )
 animation = "0_1"
-frame = 17
+frame = 11
 playing = true
 
 [node name="Moving" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 1 )
 animation = "-1_-1"
-frame = 18
+frame = 12
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 8 )
 animation = "1_-1"
-frame = 13
+frame = 1
 playing = true
 
 [node name="Biting" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = SubResource( 1 )
 animation = "1_-1"
-frame = 19
+frame = 20
 playing = true
 
 [node name="Dead" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 7 )
 animation = "0_1"
-frame = 16
+frame = 10
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

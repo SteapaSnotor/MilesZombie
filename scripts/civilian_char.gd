@@ -30,6 +30,7 @@ export var id = 0
 var _player_on_sight = false setget , is_seeing_player
 var _player_on_melee_range = false setget , is_player_on_melee_range
 var _previous_animation_node = null
+var _infected = false setget , is_infected
 
 func init(player):
 	self.player = player
@@ -58,6 +59,9 @@ func is_aggressive():
 
 func is_player_on_melee_range():
 	return _player_on_melee_range
+
+func is_infected():
+	return _infected
 
 func get_player():
 	return player
@@ -93,7 +97,8 @@ func look_at(pos):
 	update_facing((pos - global_position).normalized())
 
 func do_infection():
-	emit_signal("infected")
+	emit_signal("infected",global_position,id,self)
+	_infected = true
 
 func _on_mouse_entered():
 	emit_signal("selected",self)
