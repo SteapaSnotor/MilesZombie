@@ -43,6 +43,13 @@ var zombie_anims = {
 		'Attacking':_pth + '/jzombie_attacking.tres',
 		'Walking':_pth + '/jzombie_running.tres',
 		'Dead':_pth + '/jzombie_dead.tres'
+	},
+	
+	1:{
+		'Idle':_pth + '/bzombie_idle.tres',
+		'Attacking':_pth + '/bzombie_attacking.tres',
+		'Walking':_pth + '/bzombie_running.tres',
+		'Dead':_pth + '/bzombie_dead.tres'
 	}
 }
 

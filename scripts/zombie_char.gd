@@ -6,6 +6,38 @@ extends "res://scripts/char_actor.gd"
 	of the FSM.
 """
 
+onready var states_transitions = {
+	$FSM/Idle:[$FSM/Attacking,$FSM/Walking,$FSM/Dead],
+	$FSM/Attacking:[$FSM/Idle,$FSM/Walking,$FSM/Dead],
+	$FSM/Walking:[$FSM/Idle,$FSM/Attacking,$FSM/Dead],
+	$FSM/Dead:[]
+}
+
+onready var animation_node = $Animations
+onready var fsm = $FSM
+
+var id = 0
+
 #initialize
-func init():
-	pass
+func init(id,player):
+	self.id = id
+	
+	animation_node.init('zombie',id)
+	fsm.init(self,states_transitions)
+
+func _process(delta):
+	#debug only
+	$State.text = fsm.get_current_state().name
+	
+
+
+
+
+
+
+
+
+
+
+
+

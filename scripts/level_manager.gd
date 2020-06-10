@@ -65,11 +65,15 @@ func add_zombie(at,id=0,actor=null,timer=null):
 		#spawn the zombie here
 		var zombie = preload('res://scenes/Zombie.tscn').instance()
 		#TODO: set zombie data 
-		add_child(zombie)
+		get_z_tree().add_child(zombie)
 		zombie.global_position = at
+		zombie.init(id,player)
 		
 		if actor != null: actor.queue_free()
 		timer.queue_free()
 
 func get_path_map():
 	return $GroundTiles/Pathfinding.get_child(0)
+
+func get_z_tree():
+	return $ActorsAndTiles

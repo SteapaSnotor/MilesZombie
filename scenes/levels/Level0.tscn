@@ -41,6 +41,7 @@ _is_aggressive = false
 id = 1
 
 [node name="Sprite" type="Sprite" parent="ActorsAndTiles"]
+visible = false
 position = Vector2( 479.496, 421.619 )
 texture = ExtResource( 160 )
 
