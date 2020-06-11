@@ -10,7 +10,7 @@ signal new_animation
 #the states that each state can transition to
 onready var states_transitions= {
 	$FSM/Idle:[$FSM/Moving,$FSM/Attacking,$FSM/Dead],
-	$FSM/Moving:[$FSM/Idle,$FSM/Attacking,$FSM/Dead],
+	$FSM/Moving:[$FSM/Idle,$FSM/Attacking,$FSM/Biting,$FSM/Dead],
 	$FSM/Attacking:[$FSM/Idle,$FSM/Moving,$FSM/Biting,$FSM/Dead],
 	$FSM/Biting:[$FSM/Idle],
 	$FSM/Dead:[]
@@ -88,7 +88,7 @@ func is_close_to_selected_enemy():
 	
 func is_selected_enemy_vulnerable():
 	if selected_enemy == null: return false
-	
+	if selected_enemy.is_infected(): return false
 	
 	return !selected_enemy.is_aggressive()
 	

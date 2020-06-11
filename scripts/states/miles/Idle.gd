@@ -50,20 +50,10 @@ func check_transitions():
 	elif controller.is_action_pressed('go') and actor.is_close_to_selected_enemy():
 		next_state = transitions[1]
 		exited()
-	else: return
-	"""
-	if click_input == true:
-		#TODO: check if he's not hovering the UI
-		#TODO: check if he's not attacking
-		click_input = false
+	elif controller.is_action_pressed('special'):
 		next_state = transitions[0]
 		exited()
-	elif special_input:
-		#TODO: different state
-		#TODO: check if he has specials? mana?
-		next_state = transitions[1]
-		exited()
-	"""
+	else: return
 	
 func set_click_input(at):
 	click_input = true

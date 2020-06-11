@@ -20,21 +20,20 @@ script = ExtResource( 1 )
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
 frames = ExtResource( 4 )
 animation = "0_1"
-frame = 8
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 5 )
 animation = "1_-1"
-frame = 3
+frame = 2
 playing = true
 
 [node name="Walking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 6 )
 animation = "1_-1"
-frame = 3
+frame = 2
 playing = true
 
 [node name="Dead" type="AnimatedSprite" parent="Animations"]

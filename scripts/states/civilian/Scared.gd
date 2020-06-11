@@ -37,6 +37,9 @@ func check_transitions():
 	elif under_attack:
 		next_state = transitions[1]
 		exit()
+	elif actor.is_infected():
+		next_state = transitions[2]
+		exit()
 	else: return
 	
 func set_attacked(value):
