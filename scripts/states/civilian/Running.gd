@@ -10,6 +10,7 @@ var actor = null
 var target = null
 var next_state = null
 var was_attacked = false
+var arrived = false
 var transitions = []
 
 func init(actor,transitions):
@@ -26,7 +27,17 @@ func update(delta):
 	
 	set_target()
 	
-	actor.is_moving = actor.run(actor.global_position,target,delta)
+	#WARNING: SPAGHETTI CODE AHEAD
+	if not arrived: 
+		actor.is_moving = actor.run(actor.global_position,target,delta)
+		if not actor.is_moving: arrived = true
+	
+	if arrived:
+		if pathfinding.find_path(actor.global_position,target).size() > 2:
+			arrived = false
+		else:
+			actor.move(actor.global_position,target,delta)
+	
 	
 	check_transitions()
 	
@@ -38,7 +49,7 @@ func check_transitions():
 	if actor.get_health() <= 0:
 		next_state = transitions[3]
 		exit()
-	elif not actor.is_moving and actor.is_aggressive():
+	elif not actor.is_moving and actor.is_aggressive() and actor.is_player_on_melee_range():
 		next_state = transitions[1]
 		exit()
 	elif actor.is_moving and actor.is_aggressive() and was_attacked:
@@ -49,7 +60,6 @@ func check_transitions():
 		exit()
 	else: return
 	
-
 func set_target():
 	if actor.is_aggressive():
 		target = actor.get_player().get_global_position()
@@ -72,4 +82,5 @@ func exit():
 	self.actor = null
 	self.target = null
 	self.was_attacked = false
+	self.arrived = false
 	emit_signal("exited",next_state)

@@ -11,6 +11,8 @@ var actor = null
 func init(actor,transitions):
 	#TODO: wait for the dying animation
 	#actor.call_deferred('free')
+	
+	actor.disable_areas()
 	pass
 
 func update(delta):

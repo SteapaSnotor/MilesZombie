@@ -27,7 +27,7 @@ func init(actor,transitions):
 func update(delta):
 	if actor == null: return
 	
-	actor.update_facing((actor.get_player().global_position - actor.global_position).normalized())
+	actor.update_facing2((actor.get_player().global_position - actor.global_position).normalized())
 	
 	check_transitions()
 

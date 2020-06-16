@@ -47,7 +47,7 @@ func run(from,to,delta,min_distance = 5):
 	global_position += dir * speed * delta 
 	update_facing(dir)
 	
-	#debug.highlight_path(current_path,get_parent())
+	debug.highlight_path(current_path,get_parent())
 	
 	return true
 
@@ -83,6 +83,9 @@ func clear_current_path():
 func get_health():
 	return health
 
+func get_facing_dir():
+	return facing_dir
+
 func set_health(value):
 	health = value
 	emit_signal("attacked")
@@ -104,3 +107,29 @@ func update_facing(facing):
 	
 	facing_dir = real_facing
 	
+#like update_facing, but only > one-quarter cases being rounded to zero
+func update_facing2(facing):
+	#need to convert without normalizing since round() and floor() is
+	#giving me weird results
+	#var real_facing = facing.round()
+	
+	#manual rounding
+	var real_facing = facing.round()
+	if abs(facing.x) >= 0.25:
+		if facing.x > 0: real_facing.x = 1
+		else: real_facing.x = -1
+		
+	if abs(facing.y) >= 0.25:
+		if facing.y > 0: real_facing.y = 1
+		else: real_facing.y = -1
+	
+	if real_facing.x == -0: real_facing.x = 0
+	if real_facing.y == -0: real_facing.y = 0
+
+	if real_facing.x > 0: real_facing.x = 1.0
+	elif real_facing.x < 0: real_facing.x = -1.0
+	
+	if real_facing.y > 0: real_facing.y = 1.0
+	elif real_facing.y < 0: real_facing.y = -1.0
+	
+	facing_dir = real_facing

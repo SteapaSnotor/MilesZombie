@@ -27,13 +27,35 @@ position = Vector2( -734.603, 320.763 )
 position = Vector2( 742.968, 344.075 )
 shape = SubResource( 1 )
 
-[node name="Civilian" parent="ActorsAndTiles" instance=ExtResource( 116 )]
-position = Vector2( 93.8664, 144.201 )
-id = 2
-
 [node name="Civilian2" parent="ActorsAndTiles" instance=ExtResource( 116 )]
 position = Vector2( 479.68, 525.004 )
 _is_aggressive = false
+
+[node name="Civilian4" parent="ActorsAndTiles" instance=ExtResource( 116 )]
+position = Vector2( 563.774, 391.723 )
+_is_aggressive = false
+
+[node name="Civilian5" parent="ActorsAndTiles" instance=ExtResource( 116 )]
+position = Vector2( 447.947, 118.815 )
+
+[node name="Civilian6" parent="ActorsAndTiles" instance=ExtResource( 116 )]
+position = Vector2( 105.225, 304.456 )
+
+[node name="Civilian9" parent="ActorsAndTiles" instance=ExtResource( 116 )]
+position = Vector2( 614.548, 163.242 )
+
+[node name="Civilian10" parent="ActorsAndTiles" instance=ExtResource( 116 )]
+position = Vector2( 89.3586, 620.204 )
+
+[node name="Civilian7" parent="ActorsAndTiles" instance=ExtResource( 116 )]
+position = Vector2( 284.519, 218.776 )
+_is_aggressive = false
+id = 1
+
+[node name="Civilian8" parent="ActorsAndTiles" instance=ExtResource( 116 )]
+position = Vector2( 221.052, 509.137 )
+_is_aggressive = false
+id = 1
 
 [node name="Civilian3" parent="ActorsAndTiles" instance=ExtResource( 116 )]
 position = Vector2( 334.195, 388.22 )
@@ -52,7 +74,6 @@ texture = ExtResource( 161 )
 [node name="GroundTiles" type="Node2D" parent="."]
 
 [node name="Pathfinding" parent="GroundTiles" instance=ExtResource( 2 )]
-visible = false
 z_index = -1
 
 [node name="PlayerController" parent="." instance=ExtResource( 4 )]

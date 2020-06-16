@@ -33,14 +33,15 @@ func init(actor,transitions):
 func update(delta):
 	if actor == null: return
 	
-	#if actor.get_current_enemy() != null:
-	#	var test_pos = actor.get_current_enemy().global_position
-	#	test_pos.y -= 20
-	#	actor.update_facing((test_pos - actor.global_position).normalized())
+	if actor.get_current_enemy() != null:
+		
+		#update the player's facing according to the current enemy
+		actor.update_facing2(actor.get_global_position().direction_to(actor.get_current_enemy().get_global_position()))
+
+	else:
+		#update the player's facing acording to the mouse
+		actor.update_facing((controller.get_last_click() - actor.global_position).normalized())
 	
-	#update the facing position of the player in case he changes it
-	actor.update_facing((controller.get_last_click() - actor.global_position).normalized())
-	#actor.attack(controller.get_last_click_special())
 	check_transitions()
 
 #check if the animation is in the right frame, then call attack.
@@ -78,17 +79,6 @@ func check_transitions():
 			next_state = transitions[2]
 			exited()
 	else: return
-	
-	"""
-	if not controller.is_action_pressed('special') and not controller.is_action_pressed('go'):
-		if has_attacked == true:
-			next_state = transitions[0]
-			exited()
-	elif not controller.is_action_pressed('special') and controller.is_action_pressed('go'):
-		next_state = transitions[1]
-		exited()
-		pass
-	"""
 	
 	
 func exited():

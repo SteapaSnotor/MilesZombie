@@ -94,7 +94,12 @@ func update_animations():
 			anim.set_frame(0)
 
 func look_at(pos):
-	update_facing((pos - global_position).normalized())
+	update_facing2((pos - global_position).normalized())
+
+func disable_areas():
+	$AIDetection.get_child(0).set_disabled(true)
+	$SightDetection.get_child(0).set_disabled(true)
+	$MeleeRange.get_child(0).set_disabled(true)
 
 func do_infection():
 	emit_signal("infected",global_position,id,self)

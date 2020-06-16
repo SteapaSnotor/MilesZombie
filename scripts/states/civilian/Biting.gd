@@ -21,16 +21,19 @@ func init(actor,transitions):
 	self.end_frame = 19 #TODO: maybe this should come from the civ. node.
 	self.next_state = null
 	
+	actor.update_facing2(actor.get_global_position().direction_to(enemy.get_global_position()))
 	enemy.do_infection()
 	yield(enemy,'new_animation')
 	
 	#connect signals
 	enemy.get_current_animation_node().connect('frame_changed',self,'on_enemy_frame_change')
 	
+	
 	emit_signal("entered")
 
 func update(delta):
 	if actor == null: return
+	
 	
 	check_transitions()
 	
