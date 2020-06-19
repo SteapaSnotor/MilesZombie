@@ -6,6 +6,8 @@ extends KinematicBody2D
 """
 
 signal attacked
+signal occupying_tile
+signal free_tile
 
 var speed = 150
 var health = 100 setget set_health, get_health
@@ -13,6 +15,8 @@ var facing_dir = Vector2.DOWN
 var current_path = []
 var current_target = Vector2.ZERO
 var is_moving = false
+var _overlapping_bodies = [] setget , get_overlapping_bodies
+var occupied_tiles = []
 
 #Run from a place to another using pathfinding. 
 #Returns false if is already in place.
@@ -80,15 +84,33 @@ func attack(body):
 func clear_current_path():
 	current_path = []
 
+#returns true if two bodies are overlapping and have a given state(s)
+func check_overlapping_state(state):
+	for body in _overlapping_bodies:
+		if get_index() < body.get_index():
+			if state.find(body.fsm.get_current_state().name) != -1:
+				return true
+		
+	return false
+
 func get_health():
 	return health
 
 func get_facing_dir():
 	return facing_dir
 
+func get_overlapping_bodies():
+	return _overlapping_bodies
+
 func set_health(value):
 	health = value
 	emit_signal("attacked")
+
+func set_occupied_place(pos):
+	emit_signal("occupying_tile",pos)
+
+func set_occupied_place_free(pos):
+	emit_signal("free_tile",pos)
 
 #update the vectors that tells where the player is moving
 func update_facing(facing):
@@ -115,11 +137,11 @@ func update_facing2(facing):
 	
 	#manual rounding
 	var real_facing = facing.round()
-	if abs(facing.x) >= 0.25:
+	if abs(facing.x) >= 0.15:
 		if facing.x > 0: real_facing.x = 1
 		else: real_facing.x = -1
 		
-	if abs(facing.y) >= 0.25:
+	if abs(facing.y) >= 0.15:
 		if facing.y > 0: real_facing.y = 1
 		else: real_facing.y = -1
 	

@@ -9,6 +9,8 @@ signal selected
 signal unselected
 signal new_animation
 signal infected
+signal overlapping
+signal overlapping_stopped
 
 onready var state_transitions = {
 	$FSM/Idle:[$FSM/Running,$FSM/Attacking,$FSM/Dead,$FSM/Scared],
@@ -23,6 +25,7 @@ onready var state_transitions = {
 onready var fsm = $FSM
 onready var animation_node = $Animations
 onready var current_animation_node = $Animations/Idle setget , get_current_animation_node
+onready var halt_timer = $HaltTimer
 
 var player = null setget , get_player
 export var _is_aggressive = true setget , is_aggressive#TODO: set this on init
@@ -31,10 +34,13 @@ var _player_on_sight = false setget , is_seeing_player
 var _player_on_melee_range = false setget , is_player_on_melee_range
 var _previous_animation_node = null
 var _infected = false setget , is_infected
+var _halt_time = 0.5
+
+const default_speed = 155
 
 func init(player):
 	self.player = player
-	
+	self.speed = default_speed
 	#init systems
 	fsm.init(self,state_transitions)
 	animation_node.init('civilian',id)
@@ -105,6 +111,21 @@ func do_infection():
 	emit_signal("infected",global_position,id,self)
 	_infected = true
 
+#temporary halt the civilian movement by decreasing speed
+#generally used to avoid collisions between civilians.
+func halt_movement(timer = false):
+	if timer == true:
+		speed = default_speed
+		halt_timer.stop()
+		halt_timer.disconnect('timeout',self,'halt_movement')
+	elif halt_timer.is_stopped() and not timer:
+		speed = 0
+		halt_timer.connect('timeout',self,'halt_movement',[true])
+		halt_timer.set_wait_time(_halt_time)
+		halt_timer.start()
+	else: return
+	
+
 func _on_mouse_entered():
 	emit_signal("selected",self)
 
@@ -122,3 +143,15 @@ func on_entered_melee_range(body):
 
 func on_exited_melee_range(body):
 	if body == player: _player_on_melee_range = false
+
+func on_overlap_detection_entered(area):
+	if area.name == 'OverlapDetection' and area.get_parent() != self:
+		if _overlapping_bodies.find(area.get_parent()) == -1:
+			_overlapping_bodies.append(area.get_parent()) 
+			emit_signal('overlapping')
+	
+func on_overlap_detection_exited(area):
+	if area.name == 'OverlapDetection' and area.get_parent() != self:
+		if _overlapping_bodies.find(area.get_parent()) != -1:
+			_overlapping_bodies.erase(area.get_parent())
+			emit_signal('overlapping_stopped')

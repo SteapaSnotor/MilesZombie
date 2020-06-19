@@ -11,6 +11,7 @@ var next_state = null
 var anim_node = null
 var transitions = []
 var attacking_frame = 0
+var attacking_tile = Vector2.ZERO
 
 const min_attack_dis = 64
 
@@ -21,13 +22,18 @@ func init(actor,transitions):
 	self.transitions = transitions
 	self.attacking_frame = 15 #TODO: this must come from the actor
 	self.anim_node = actor.get_current_animation_node()
+	
 	#signals
 	self.anim_node.connect('frame_changed',self,'attack')
+	
+	attacking_tile = actor.get_global_position()
+	attacking_tile.y += 128 
+	actor.set_occupied_place(attacking_tile)
 	
 func update(delta):
 	if actor == null: return
 	
-	actor.update_facing2((actor.get_player().global_position - actor.global_position).normalized())
+	actor.update_facing((actor.get_player().global_position - actor.global_position).normalized())
 	
 	check_transitions()
 
@@ -54,7 +60,9 @@ func check_transitions():
 func exit():
 	#disconnect signals
 	anim_node.disconnect('frame_changed',self,'attack')
+	actor.set_occupied_place_free(attacking_tile)
 	
 	actor = null
 	anim_node = null
+	attacking_tile = Vector2.ZERO
 	emit_signal("exited",next_state)

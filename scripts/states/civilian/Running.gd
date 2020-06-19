@@ -21,11 +21,14 @@ func init(actor,transitions):
 	
 	#signals
 	actor.connect('attacked',self,'set_attacked')
-
+	
 func update(delta):
 	if actor == null: return
 	
 	set_target()
+	
+	if actor.check_overlapping_state(['Running','Moving']):
+		actor.halt_movement()
 	
 	#WARNING: SPAGHETTI CODE AHEAD
 	if not arrived: 
@@ -37,7 +40,6 @@ func update(delta):
 			arrived = false
 		else:
 			actor.move(actor.global_position,target,delta)
-	
 	
 	check_transitions()
 	
@@ -62,9 +64,12 @@ func check_transitions():
 	
 func set_target():
 	if actor.is_aggressive():
+		#TODO: to avoid overlapping between civilians, the AI needs
+		#to go the neighbour tiles around the player. 
 		target = actor.get_player().get_global_position()
+		
+		
 	elif not actor.is_aggressive() and target == null:
-		pass #TODO
 		var reflected = actor.get_global_position() - actor.get_player().get_global_position()
 		reflected = reflected.normalized() * 5
 		var pos_reflected = actor.get_global_position() * reflected
