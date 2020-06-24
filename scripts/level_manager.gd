@@ -78,7 +78,7 @@ func add_zombie(at,id=0,actor=null,timer=null):
 func update_AI_tiles_info():
 	for object in $ActorsAndTiles.get_children():
 		if object.is_in_group('Enemy'): 
-			object.occupied_tiles = get_occupied_tiles()
+			object.occupied_tiles = get_occupied_tiles().duplicate()
 
 func get_path_map():
 	return $GroundTiles/Pathfinding.get_child(0)
@@ -89,21 +89,13 @@ func get_occupied_tiles():
 	return occupied_tiles
 
 func set_occupied_tile(tile):
-	var final_tile = pathfinding.get_closest_tile(tile)
-	final_tile.x += 32
-	final_tile.y -= 32
-	
-	occupied_tiles.append(final_tile)
+	occupied_tiles.append(tile)
 	
 	debug.highlight_path(occupied_tiles,self)
 	update_AI_tiles_info()
 
 func set_occupied_tile_free(tile):
-	var final_tile = pathfinding.get_closest_tile(tile)
-	final_tile.x += 32
-	final_tile.y -= 32
-	
-	occupied_tiles.remove(occupied_tiles.find(final_tile))
+	occupied_tiles.remove(occupied_tiles.find(tile))
 	
 	debug.highlight_path(occupied_tiles,self)
 	update_AI_tiles_info()

@@ -194,6 +194,15 @@ func set_tile_weight(position,weight):
 	var tile = self.star.get_closest_point(vector_convert(tile_node.world_to_map(position)))
 	self.star.set_point_weight_scale(tile,weight)
 
+#add an offset for each tile in a given path
+func set_path_centered(path):
+	#path_points2[path_points2.size()-1].x += (tile_size.x/2)
+	#path_points2[path_points2.size()-1].y -= (tile_size.y/2)
+	var new_path = []
+	for tile in path:
+		new_path.append(Vector2(tile.x + (tile_size.x/2),tile.y - (tile_size.y/2)))
+	
+	return new_path
 
 #DEBUG ONLY
 func debug():

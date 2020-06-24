@@ -51,7 +51,6 @@ func _process(delta):
 	if player == null: return
 	
 	update_animations()
-	
 	#print(health)
 	#debug only
 	$State.text = fsm.get_current_state().name

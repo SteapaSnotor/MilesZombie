@@ -67,7 +67,7 @@ func set_target():
 		#TODO: to avoid overlapping between civilians, the AI needs
 		#to go the neighbour tiles around the player. 
 		target = actor.get_player().get_global_position()
-		
+		actor.get_attacking_target(target)
 		
 	elif not actor.is_aggressive() and target == null:
 		var reflected = actor.get_global_position() - actor.get_player().get_global_position()

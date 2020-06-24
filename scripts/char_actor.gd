@@ -13,6 +13,7 @@ var speed = 150
 var health = 100 setget set_health, get_health
 var facing_dir = Vector2.DOWN
 var current_path = []
+var last_path = []
 var current_target = Vector2.ZERO
 var is_moving = false
 var _overlapping_bodies = [] setget , get_overlapping_bodies
@@ -24,13 +25,15 @@ func run(from,to,delta,min_distance = 5):
 	#TODO: reuse paths
 	#TODO: maybe tha AI won't need offsets
 	#small offset
-	var to_offset = Vector2(to.x-64,to.y+128) 
+	#var to_offset = Vector2(to.x-64,to.y+128) 
+	var to_offset = Vector2(to.x,to.y+128) 
 	var from_offset = Vector2(from.x,from.y+128)
 	var dir = Vector2.ZERO
 	var current_tile = Vector2.ZERO
 	
 	if current_path.empty() or current_target.distance_to(to) >20:
 		current_path = pathfinding.find_path(from_offset,to_offset)
+		last_path = current_path.duplicate()
 		#debug.highlight_path(current_path,get_parent())
 	
 	current_target = to
@@ -51,7 +54,7 @@ func run(from,to,delta,min_distance = 5):
 	global_position += dir * speed * delta 
 	update_facing(dir)
 	
-	debug.highlight_path(current_path,get_parent())
+	#debug.highlight_path(current_path,get_parent())
 	
 	return true
 
@@ -101,6 +104,15 @@ func get_facing_dir():
 
 func get_overlapping_bodies():
 	return _overlapping_bodies
+
+func get_last_path():
+	return last_path
+
+func get_attacking_target(target):
+	var target_offset = Vector2(target.x,target.y+64) 
+	
+	var attacking_points = pathfinding.get_neighbours(target_offset)
+	debug.highlight_path(pathfinding.set_path_centered(attacking_points),get_parent())
 
 func set_health(value):
 	health = value
