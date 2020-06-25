@@ -64,10 +64,7 @@ func check_transitions():
 	
 func set_target():
 	if actor.is_aggressive():
-		#TODO: to avoid overlapping between civilians, the AI needs
-		#to go the neighbour tiles around the player. 
-		target = actor.get_player().get_global_position()
-		actor.get_attacking_target(target)
+		target = actor.get_attacking_target(actor.get_player().get_global_position())
 		
 	elif not actor.is_aggressive() and target == null:
 		var reflected = actor.get_global_position() - actor.get_player().get_global_position()

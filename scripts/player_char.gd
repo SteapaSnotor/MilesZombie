@@ -43,12 +43,8 @@ func _process(delta):
 	#debug only: show the current state
 	$State.text = fsm.get_current_state().name
 	#debug only: update health bar
+	self.health = 500
 	$Info/HealthBar.value = health
-	
-	var t = Vector2(global_position.x,global_position.y+128)
-	t = pathfinding.get_closest_tile(t)
-	var t2 = pathfinding.set_path_centered([t])
-	#debug.highlight_path(t2,self)
 	
 #when player uses the go action
 func player_clicked(at):

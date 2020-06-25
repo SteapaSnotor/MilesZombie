@@ -26,7 +26,10 @@ func init(actor,transitions):
 	#signals
 	self.anim_node.connect('frame_changed',self,'attack')
 	
-	attacking_tile = actor.get_last_path().back()
+	#attacking_tile = actor.get_last_path().back()
+	attacking_tile = pathfinding.get_closest_tile(actor.global_position)
+	attacking_tile = pathfinding.set_path_centered([attacking_tile])[0]
+	attacking_tile.y += 64
 	actor.set_occupied_place(attacking_tile)
 	
 func update(delta):

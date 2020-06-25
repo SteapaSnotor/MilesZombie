@@ -39,7 +39,7 @@ _is_aggressive = false
 position = Vector2( 95.7053, 104.535 )
 
 [node name="Civilian6" parent="ActorsAndTiles" instance=ExtResource( 116 )]
-position = Vector2( 162.346, 239.402 )
+position = Vector2( 862.581, 180.691 )
 
 [node name="Civilian7" parent="ActorsAndTiles" instance=ExtResource( 116 )]
 position = Vector2( 284.519, 218.776 )

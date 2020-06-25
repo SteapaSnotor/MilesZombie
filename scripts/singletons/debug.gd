@@ -14,6 +14,12 @@ onready var tree = get_tree()
 var previous_highlight = []
 var line_from = null
 var line_to = null
+var console = null
+var console_open = false
+
+func _input(event):
+	if event.is_action_pressed("console"):
+		set_console_open(!console_open)
 
 func highlight_path(path,where):
 	#clear previous highlight
@@ -39,9 +45,19 @@ func _draw():
 	if line_from is Vector2:
 		draw_line(line_from,line_to,Color.red,4.0)
 	
-
-
-
+#open and closes the console
+func set_console_open(open):
+	console_open = open
+	
+	if console_open:
+		#add and init the console here
+		console = load('res://scenes/Console.tscn').instance()
+		self.add_child(console)
+		
+		#connect signals here
+		
+	else:
+		console.queue_free()
 
 
 

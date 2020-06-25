@@ -34,8 +34,8 @@ func run(from,to,delta,min_distance = 5):
 	if current_path.empty() or current_target.distance_to(to) >20:
 		current_path = pathfinding.find_path(from_offset,to_offset)
 		last_path = current_path.duplicate()
-		#debug.highlight_path(current_path,get_parent())
-	
+	#	debug.highlight_path(current_path,get_parent())
+		
 	current_target = to
 	
 	if current_path.size() > 1:
@@ -54,7 +54,7 @@ func run(from,to,delta,min_distance = 5):
 	global_position += dir * speed * delta 
 	update_facing(dir)
 	
-	#debug.highlight_path(current_path,get_parent())
+	debug.highlight_path(current_path,get_parent())
 	
 	return true
 
@@ -108,11 +108,41 @@ func get_overlapping_bodies():
 func get_last_path():
 	return last_path
 
+#TODO: this func may be too performance heavy, I need to find new ways
+#to optimize it later.
 func get_attacking_target(target):
 	var target_offset = Vector2(target.x,target.y+64) 
+	var attacking_points = pathfinding.set_path_centered(pathfinding.get_neighbours(target_offset))
+	var body_tile = pathfinding.get_closest_tile(global_position)
+	body_tile = pathfinding.set_path_centered([body_tile])
+	body_tile = body_tile[0]
+	body_tile.y += 64
 	
-	var attacking_points = pathfinding.get_neighbours(target_offset)
-	debug.highlight_path(pathfinding.set_path_centered(attacking_points),get_parent())
+	#remove tiles that are occupied from the attacking tiles
+	for tile in occupied_tiles:
+		if attacking_points.find(tile) != -1:
+			attacking_points.remove(attacking_points.find(tile))
+			continue
+	
+	if attacking_points == []:
+		#all tiles are occupied just return a random one
+		attacking_points = pathfinding.set_path_centered(pathfinding.get_neighbours(target_offset))
+		attacking_points.shuffle()
+		return attacking_points[0]
+	
+	#sort by the closest tile from this body
+	attacking_points.sort_custom(self,'distance_sorter')
+	
+	#debug.highlight_path(attacking_points,get_parent())
+	
+	return attacking_points[0]
+
+#sort positions according to its distance to this actor.
+#to be used with sort_custom().
+func distance_sorter(a,b):
+	if a.distance_to(global_position) < b.distance_to(global_position):
+		return true
+	return false
 
 func set_health(value):
 	health = value
