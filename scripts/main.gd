@@ -10,6 +10,8 @@ var world = null
 var gui = null
 var level = null
 
+var version = '0.0.1'
+
 #intialize game
 func _ready():
 	#TODO: initialize main menu first

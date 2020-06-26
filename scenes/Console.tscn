@@ -15,16 +15,19 @@ __meta__ = {
 }
 
 [node name="Input" type="Panel" parent="CanvasLayer/MainConsole"]
-margin_top = 150.0
-margin_right = 1023.0
-margin_bottom = 203.0
+margin_left = 1.49522
+margin_top = 150.051
+margin_right = 1024.5
+margin_bottom = 203.051
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="IntputText" type="LineEdit" parent="CanvasLayer/MainConsole/Input"]
-margin_right = 1022.0
-margin_bottom = 51.0
+[node name="InputText" type="LineEdit" parent="CanvasLayer/MainConsole/Input"]
+margin_left = -1.49522
+margin_top = -1.05139
+margin_right = 1020.5
+margin_bottom = 49.9486
 text = "Execute Commands..."
 __meta__ = {
 "_edit_use_anchors_": false
@@ -40,10 +43,9 @@ __meta__ = {
 }
 
 [node name="Output" type="Panel" parent="CanvasLayer/MainConsole"]
-margin_left = 1.0
-margin_top = 2.0
-margin_right = 1024.0
-margin_bottom = 148.0
+margin_left = -1.0
+margin_right = 1022.0
+margin_bottom = 146.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -53,8 +55,10 @@ margin_left = 1.0
 margin_top = -1.0
 margin_right = 1021.0
 margin_bottom = 146.0
-text = "Day, time, game version - Steapa 2020"
 valign = 2
+autowrap = true
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="gui_input" from="CanvasLayer/MainConsole/Input/InputText" to="." method="on_input_command"]

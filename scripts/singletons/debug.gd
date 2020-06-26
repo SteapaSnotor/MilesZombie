@@ -53,13 +53,26 @@ func set_console_open(open):
 		#add and init the console here
 		console = load('res://scenes/Console.tscn').instance()
 		self.add_child(console)
+		console.init(tree.root.get_node('Main').version)
 		
 		#connect signals here
+		console.connect('fill_grid',self,'fill_grid')
 		
 	else:
 		console.queue_free()
 
-
-
+func fill_grid(centered):
+	var main = get_parent().get_node('Main')
+	var level = main.world.current_level
+	var grid_map = level.get_path_map()
+	var grid_real = []
+	
+	for tile in grid_map.get_used_cells():
+		grid_real.append(grid_map.map_to_world(tile))
+	
+	if centered == 'true':
+		grid_real = pathfinding.set_path_centered(grid_real)
+	
+	highlight_path(grid_real,level)
 
 
