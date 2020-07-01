@@ -27,12 +27,13 @@ extents = Vector2( 39.2822, 72.8082 )
 radius = 262.036
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 32.1146, 62.975 )
+extents = Vector2( 23.4806, 61.5563 )
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 11.1447
 
 [node name="Civilian" type="KinematicBody2D" groups=[
+"AI",
 "Civilian",
 "Enemy",
 ]]
@@ -44,35 +45,35 @@ position = Vector2( 0, 0 )
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
 frames = ExtResource( 19 )
 animation = "0_1"
-frame = 6
+frame = 1
 playing = true
 
 [node name="Running" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 2 )
 animation = "1_-1"
-frame = 18
+frame = 22
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 7 )
 animation = "0_1"
-frame = 10
+frame = 8
 playing = true
 
 [node name="Scared" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 8 )
 animation = "0_1"
-frame = 5
+frame = 1
 playing = true
 
 [node name="Hit" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 10 )
 animation = "0_1"
-frame = 25
+frame = 8
 playing = true
 
 [node name="Transforming" type="AnimatedSprite" parent="Animations"]
@@ -160,7 +161,7 @@ shape = SubResource( 2 )
 position = Vector2( 0, 30 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeRange"]
-position = Vector2( -0.663422, -27.2003 )
+position = Vector2( -0.0646824, -17.6205 )
 shape = SubResource( 3 )
 
 [node name="OverlapDetection" type="Area2D" parent="."]

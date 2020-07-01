@@ -12,14 +12,20 @@ var debug_textures = {
 onready var tree = get_tree()
 
 var previous_highlight = []
+var highlights_added = []
 var line_from = null
 var line_to = null
 var console = null
 var console_open = false
+var showing_positions = false
 
 func _input(event):
 	if event.is_action_pressed("console"):
 		set_console_open(!console_open)
+
+#commands that are called every frame
+func _process(delta):
+	if showing_positions: show_pos_all()
 
 func highlight_path(path,where):
 	#clear previous highlight
@@ -33,7 +39,13 @@ func highlight_path(path,where):
 		where.add_child(spr)
 		spr.global_position = point
 		previous_highlight.append(spr)
-		
+
+
+func add_to_body(body,obj,pos):
+	body.add_child(obj)
+	obj.global_position = pos
+	highlights_added.append(obj)
+
 func do_line(from,to):
 	line_from = from
 	line_to = to
@@ -44,7 +56,14 @@ func _draw():
 	#draw any lines
 	if line_from is Vector2:
 		draw_line(line_from,line_to,Color.red,4.0)
+
+func _get_debug_sprite(id = 'highlight'):
+	var spr = Sprite.new()
+	spr.texture = debug_textures[id]
+	spr.name = id
 	
+	return spr
+
 #open and closes the console
 func set_console_open(open):
 	console_open = open
@@ -57,6 +76,7 @@ func set_console_open(open):
 		
 		#connect signals here
 		console.connect('fill_grid',self,'fill_grid')
+		console.connect('show_pos_all',self,'show_pos_all')
 		
 	else:
 		console.queue_free()
@@ -75,4 +95,18 @@ func fill_grid(centered):
 	
 	highlight_path(grid_real,level)
 
-
+#show the position of every body in the game
+func show_pos_all():
+	var positions = []
+	var main = get_parent().get_node('Main')
+	var level = main.world.current_level
+	
+	for ai in (tree.get_nodes_in_group('AI') + tree.get_nodes_in_group('Player')):
+		positions.append(ai.get_grid_position())
+		
+	highlight_path(positions,level)
+	
+	showing_positions = true
+	
+	
+	

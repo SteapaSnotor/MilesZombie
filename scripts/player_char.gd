@@ -40,6 +40,7 @@ func init(controller):
 #player's animations
 func _process(delta):
 	update_animations()
+	update_grid_position()
 	#debug only: show the current state
 	$State.text = fsm.get_current_state().name
 	#debug only: update health bar

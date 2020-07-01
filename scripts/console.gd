@@ -8,7 +8,8 @@ extends Node
 signal fill_grid
 signal print_text
 signal help
-signal show_index
+signal show_index_all
+signal show_pos_all
 
 onready var input = $CanvasLayer/MainConsole/Input/InputText
 onready var output = $CanvasLayer/MainConsole/Output/OutputText
@@ -17,7 +18,8 @@ var commands = {
 	'fill_grid':[true],
 	'print_text':[''],
 	'help':[],
-	'show_index':[]
+	'show_index_all':[],
+	'show_pos_all':[]
 }
 
 #initialize console
@@ -58,7 +60,7 @@ func print_text(text):
 func help():
 	for command in commands.keys():
 		print_text(str(command))
-	
+
 func on_input_command(event):
 	#TODO: Convert values from arguments to real types.
 	if event.is_action_pressed('console_enter'):

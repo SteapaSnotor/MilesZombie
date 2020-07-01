@@ -51,6 +51,7 @@ func _process(delta):
 	if player == null: return
 	
 	update_animations()
+	update_grid_position()
 	#print(health)
 	#debug only
 	$State.text = fsm.get_current_state().name
@@ -99,7 +100,7 @@ func update_animations():
 			anim.set_frame(0)
 
 func look_at(pos):
-	update_facing2((pos - global_position).normalized())
+	update_facing2((pos - get_grid_position()).normalized())
 
 func disable_areas():
 	$AIDetection.get_child(0).set_disabled(true)

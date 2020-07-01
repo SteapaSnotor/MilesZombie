@@ -18,6 +18,7 @@ var current_target = Vector2.ZERO
 var is_moving = false
 var _overlapping_bodies = [] setget , get_overlapping_bodies
 var occupied_tiles = []
+var grid_position = Vector2.ZERO setget , get_grid_position
 
 #Run from a place to another using pathfinding. 
 #Returns false if is already in place.
@@ -26,8 +27,8 @@ func run(from,to,delta,min_distance = 5):
 	#TODO: maybe tha AI won't need offsets
 	#small offset
 	#var to_offset = Vector2(to.x-64,to.y+128) 
-	var to_offset = Vector2(to.x,to.y+128) 
-	var from_offset = Vector2(from.x,from.y+128)
+	var to_offset = Vector2(to.x,to.y) 
+	var from_offset = Vector2(from.x,from.y)
 	var dir = Vector2.ZERO
 	var current_tile = Vector2.ZERO
 	
@@ -37,20 +38,19 @@ func run(from,to,delta,min_distance = 5):
 	#	debug.highlight_path(current_path,get_parent())
 		
 	current_target = to
-	
 	if current_path.size() > 1:
-		dir = (current_path[1] - from).normalized()
+		dir = (current_path[1] - global_position).normalized()
 		current_tile = current_path[1]
 	else: 
 		current_path =[]
 		return false
 		
-	if current_tile.distance_to(from) <= min_distance:
+	if current_tile.distance_to(global_position) <= min_distance:
 		current_path.remove(current_path.find(current_tile))
 		
 		if current_path.size() == 0:
 			return false
-		
+			
 	global_position += dir * speed * delta 
 	update_facing(dir)
 	
@@ -72,8 +72,25 @@ func move(from,to,delta,min_distance = 20):
 			
 		if move_and_collide(dir * speed * delta) != null: return false
 		return true
-	
 
+#move away from a given position, going toward one of the 4 neighbouring
+#tiles.
+func move_away(from,delta):
+	var offset_from = Vector2(from.x,from.y+32)
+	var neighbours = [
+		pathfinding.set_path_centered([pathfinding.get_closest_tile(Vector2(offset_from.x+64,offset_from.y))])[0],
+		pathfinding.set_path_centered([pathfinding.get_closest_tile(Vector2(offset_from.x-64,offset_from.y))])[0],
+		pathfinding.set_path_centered([pathfinding.get_closest_tile(Vector2(offset_from.x,offset_from.y+64))])[0],
+		pathfinding.set_path_centered([pathfinding.get_closest_tile(Vector2(offset_from.x,offset_from.y-64))])[0]]
+	
+	neighbours.sort_custom(self,'distance_sorter')
+	
+	#neighbours.remove(0)
+	#debug.highlight_path(neighbours,get_parent())
+	
+	return run(global_position,neighbours[0],delta,20) 
+	
+	
 func attack(body):
 	#attacks someone
 	#TODO: body should be a vector, but actor with this class as a base
@@ -111,12 +128,10 @@ func get_last_path():
 #TODO: this func may be too performance heavy, I need to find new ways
 #to optimize it later.
 func get_attacking_target(target):
-	var target_offset = Vector2(target.x,target.y+64) 
+	var target_offset = Vector2(target.x,target.y+32) 
 	var attacking_points = pathfinding.set_path_centered(pathfinding.get_neighbours(target_offset))
-	var body_tile = pathfinding.get_closest_tile(global_position)
-	body_tile = pathfinding.set_path_centered([body_tile])
-	body_tile = body_tile[0]
-	body_tile.y += 64
+	var body_tile = get_grid_position()
+	#body_tile.y += 64
 	
 	#remove tiles that are occupied from the attacking tiles
 	for tile in occupied_tiles:
@@ -136,6 +151,9 @@ func get_attacking_target(target):
 	#debug.highlight_path(attacking_points,get_parent())
 	
 	return attacking_points[0]
+
+func get_grid_position():
+	return grid_position
 
 #sort positions according to its distance to this actor.
 #to be used with sort_custom().
@@ -169,7 +187,7 @@ func update_facing(facing):
 	if real_facing.y > 0: real_facing.y = 1.0
 	elif real_facing.y < 0: real_facing.y = -1.0
 	
-	facing_dir = real_facing
+	if real_facing != Vector2.ZERO: facing_dir = real_facing
 	
 #like update_facing, but only > one-quarter cases being rounded to zero
 func update_facing2(facing):
@@ -179,11 +197,12 @@ func update_facing2(facing):
 	
 	#manual rounding
 	var real_facing = facing.round()
-	if abs(facing.x) >= 0.15:
+	
+	if abs(facing.x) >= 0.30:
 		if facing.x > 0: real_facing.x = 1
 		else: real_facing.x = -1
 		
-	if abs(facing.y) >= 0.15:
+	if abs(facing.y) >= 0.30:
 		if facing.y > 0: real_facing.y = 1
 		else: real_facing.y = -1
 	
@@ -196,4 +215,24 @@ func update_facing2(facing):
 	if real_facing.y > 0: real_facing.y = 1.0
 	elif real_facing.y < 0: real_facing.y = -1.0
 	
-	facing_dir = real_facing
+	if real_facing != Vector2.ZERO: facing_dir = real_facing
+
+func update_grid_position():
+	var real_pos = global_position
+	#apply real offsets here
+	#TODO: get this from a dictionary or property
+	real_pos.y += 110
+	
+	var grid_pos = pathfinding.get_closest_tile(real_pos)
+	#apply offsets here
+	#TODO: get this from a dictionary or property
+	grid_pos.x += 32 
+	grid_pos.y -= 32 
+	
+	grid_position = grid_pos
+
+
+
+
+
+

@@ -28,18 +28,24 @@ position = Vector2( 742.968, 344.075 )
 shape = SubResource( 1 )
 
 [node name="Civilian2" parent="ActorsAndTiles" instance=ExtResource( 116 )]
-position = Vector2( 479.68, 525.004 )
+position = Vector2( 390.202, 313.254 )
 _is_aggressive = false
 
 [node name="Civilian4" parent="ActorsAndTiles" instance=ExtResource( 116 )]
-position = Vector2( 563.774, 391.723 )
+position = Vector2( 439.77, 148.8 )
 _is_aggressive = false
 
 [node name="Civilian5" parent="ActorsAndTiles" instance=ExtResource( 116 )]
-position = Vector2( 95.7053, 104.535 )
+position = Vector2( 356.898, 411.98 )
+
+[node name="Civilian9" parent="ActorsAndTiles" instance=ExtResource( 116 )]
+position = Vector2( 479.332, 422.863 )
+
+[node name="Civilian10" parent="ActorsAndTiles" instance=ExtResource( 116 )]
+position = Vector2( 287.519, 494.963 )
 
 [node name="Civilian6" parent="ActorsAndTiles" instance=ExtResource( 116 )]
-position = Vector2( 862.581, 180.691 )
+position = Vector2( 355.16, 618.732 )
 
 [node name="Civilian7" parent="ActorsAndTiles" instance=ExtResource( 116 )]
 position = Vector2( 284.519, 218.776 )
@@ -47,12 +53,12 @@ _is_aggressive = false
 id = 1
 
 [node name="Civilian8" parent="ActorsAndTiles" instance=ExtResource( 116 )]
-position = Vector2( 221.052, 509.137 )
+position = Vector2( 94.5369, 366.524 )
 _is_aggressive = false
 id = 1
 
 [node name="Civilian3" parent="ActorsAndTiles" instance=ExtResource( 116 )]
-position = Vector2( 334.195, 388.22 )
+position = Vector2( 97.5607, 226.932 )
 _is_aggressive = false
 id = 1
 
