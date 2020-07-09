@@ -28,6 +28,8 @@ onready var current_animation_node = $Animations/Idle setget , get_current_anima
 onready var halt_timer = $HaltTimer
 
 var player = null setget , get_player
+var enemies_on_melee_range = []
+var enemies_on_sight = []
 export var _is_aggressive = true setget , is_aggressive#TODO: set this on init
 export var id = 0
 var _player_on_sight = false setget , is_seeing_player
@@ -60,11 +62,17 @@ func _process(delta):
 func is_seeing_player():
 	return _player_on_sight
 
+func is_seeing_enemies():
+	return enemies_on_sight.size() != 0
+
 func is_aggressive():
 	return _is_aggressive
 
 func is_player_on_melee_range():
 	return _player_on_melee_range
+
+func is_enemies_on_melee_range():
+	return enemies_on_melee_range.size() != 0
 
 func is_infected():
 	return _infected
@@ -125,7 +133,6 @@ func halt_movement(timer = false):
 		halt_timer.start()
 	else: return
 	
-
 func _on_mouse_entered():
 	emit_signal("selected",self)
 
@@ -138,11 +145,29 @@ func on_sight_detection_entered(body):
 func on_sight_detection_exited(body):
 	if body == player: _player_on_sight = false
 
+func on_enemy_detection_entered(area):
+	if area.get_parent().is_in_group('PlayerAlly') and enemies_on_sight.find(area.get_parent()) == -1:
+		enemies_on_sight.append(area.get_parent())
+
+func on_enemy_detection_exited(area):
+	if enemies_on_sight.find(area.get_parent()) != -1:
+		enemies_on_sight.remove(enemies_on_sight.find(area.get_parent()))
+
 func on_entered_melee_range(body):
 	if body == player: _player_on_melee_range = true
 
 func on_exited_melee_range(body):
 	if body == player: _player_on_melee_range = false
+
+func on_enemies_entered_melee_range(area):
+	if area.get_parent().is_in_group('PlayerAlly'):
+		if enemies_on_melee_range.find(area.get_parent()) == -1:
+			enemies_on_melee_range.append(area.get_parent())
+
+func on_enemies_exited_melee_range(area):
+	if area.get_parent().is_in_group('PlayerAlly'):
+		if enemies_on_melee_range.find(area.get_parent()) != -1:
+			enemies_on_melee_range.remove(enemies_on_melee_range.find(area.get_parent()))
 
 func on_overlap_detection_entered(area):
 	if area.name == 'OverlapDetection' and area.get_parent() != self:

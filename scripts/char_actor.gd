@@ -162,6 +162,12 @@ func distance_sorter(a,b):
 		return true
 	return false
 
+#like distance_sorter but it expects bodies instead of positions.
+func distance_body_sorter(a,b):
+	if a.global_position.distance_to(global_position) < b.global_position.distance_to(global_position):
+		return true
+	return false
+
 func set_health(value):
 	health = value
 	emit_signal("attacked")

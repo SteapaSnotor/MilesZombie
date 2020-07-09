@@ -243,35 +243,35 @@ script = ExtResource( 2 )
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
 frames = ExtResource( 7 )
 animation = "0_1"
-frame = 13
+frame = 8
 playing = true
 
 [node name="Moving" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 1 )
 animation = "-1_-1"
-frame = 14
+frame = 9
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 8 )
 animation = "1_-1"
-frame = 9
+frame = 4
 playing = true
 
 [node name="Biting" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = SubResource( 1 )
 animation = "1_-1"
-frame = 16
+frame = 9
 playing = true
 
 [node name="Dead" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 7 )
 animation = "0_1"
-frame = 12
+frame = 7
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -310,6 +310,7 @@ __meta__ = {
 [node name="SightDetection" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SightDetection"]
+visible = false
 shape = SubResource( 3 )
 
 [node name="MeleeRange" type="Area2D" parent="."]

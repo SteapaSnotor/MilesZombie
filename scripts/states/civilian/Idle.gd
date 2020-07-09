@@ -31,6 +31,9 @@ func check_transitions():
 	elif actor.is_seeing_player() and actor.is_aggressive():
 		next_state = transitions[0]
 		exit()
+	elif actor.is_seeing_enemies() and actor.is_aggressive():
+		next_state = transitions[0]
+		exit()
 	elif actor.is_seeing_player() and not actor.is_aggressive():
 		next_state = transitions[3]
 		exit()

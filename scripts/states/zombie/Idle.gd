@@ -23,7 +23,28 @@ func update(delta):
 	check_transitions()
 
 func check_transitions():
-	pass
+	#transition 0 = Attacking
+	#transition 1 = Walking
+	#transition 2 = Dead
+	if actor.get_health() <= 0:
+		next_state = transitions[2]
+		exit()
+	elif actor.is_seeing_enemies():
+		var closest = actor.get_closest_on_sight()
+		if actor.is_enemy_on_melee_range(closest):
+			next_state = transitions[0]
+			exit()
+		else:
+			next_state = transitions[1]
+			exit()
+	elif actor.is_seeing_player():
+		var p_player = actor.get_player().get_grid_position()
+		
+		if actor.get_grid_position().distance_to(p_player) > actor.player_max_distance:
+			next_state = transitions[1]
+			exit()
+	else: return
+	
 	
 func exit():
 	actor = null

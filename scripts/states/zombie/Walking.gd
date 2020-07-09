@@ -7,8 +7,10 @@ extends Node
 signal exited
 
 var actor = null
+var target = null
+var is_overlapping = false
+var is_moving_towards_player = false
 var transitions = []
-
 var next_state = null
 
 func init(actor,transitions):
@@ -18,11 +20,53 @@ func init(actor,transitions):
 func update(delta):
 	if actor == null: return
 	
+	set_target()
+	
+	if actor.check_overlapping_state(['Running','Walking']):
+		actor.halt_movement()
+	
+	if actor.check_overlapping_state(['Attacking']):
+		is_overlapping = true
+		
+	if is_overlapping:
+		is_overlapping = actor.move_away(target,delta)
+	
+	if not is_overlapping:
+		actor.is_moving = actor.run(actor.get_grid_position(),target,delta)
+	
 	check_transitions()
 
 func check_transitions():
-	pass
+	#transition 0 = Idle
+	#transition 1 = Attacking
+	#transition 2 = Dead
+	if actor.get_health() <= 0:
+		next_state = transitions[2]
+		exit()
+	elif not actor.is_moving and actor.is_seeing_enemies():
+		if actor.is_enemy_on_melee_range(actor.get_closest_on_sight()):
+			next_state = transitions[1]
+			exit()
+	elif is_moving_towards_player:
+		var player_p = actor.get_player().get_grid_position()
+		if not actor.is_seeing_player() or player_p.distance_to(actor.get_grid_position()) < actor.player_max_distance:
+			next_state = transitions[0]
+			exit()
+	else: return
+
+func set_target():
+	var player_p = actor.get_player().get_grid_position()
+	
+	if not actor.is_seeing_enemies() and player_p.distance_to(actor.get_grid_position()) > actor.player_max_distance:
+		target = actor.get_player().get_grid_position()
+		is_moving_towards_player = true
+	elif actor.is_seeing_enemies():
+		target = actor.get_closest_on_sight().get_global_position()
+	else: return
 	
 func exit():
 	actor = null
+	target = null
+	is_overlapping = false
+	is_moving_towards_player = false
 	emit_signal("exited",next_state)

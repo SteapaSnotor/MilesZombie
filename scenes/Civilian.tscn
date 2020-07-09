@@ -12,6 +12,8 @@
 [ext_resource path="res://resources/animations_data/johnny_hit.tres" type="SpriteFrames" id=10]
 [ext_resource path="res://scripts/states/civilian/Hit.gd" type="Script" id=11]
 [ext_resource path="res://resources/animations_data/johnny_dead.tres" type="SpriteFrames" id=12]
+[ext_resource path="res://resources/collision_shapes/civ_melee_range.tres" type="Shape2D" id=13]
+[ext_resource path="res://resources/collision_shapes/sight_detection.tres" type="Shape2D" id=14]
 [ext_resource path="res://scenes/FSM.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scripts/states/civilian/Idle.gd" type="Script" id=17]
 [ext_resource path="res://scripts/states/civilian/Running.gd" type="Script" id=18]
@@ -24,12 +26,6 @@
 extents = Vector2( 39.2822, 72.8082 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 262.036
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 23.4806, 61.5563 )
-
-[sub_resource type="CircleShape2D" id=4]
 radius = 11.1447
 
 [node name="Civilian" type="KinematicBody2D" groups=[
@@ -45,35 +41,35 @@ position = Vector2( 0, 0 )
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
 frames = ExtResource( 19 )
 animation = "0_1"
-frame = 1
+frame = 9
 playing = true
 
 [node name="Running" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 2 )
 animation = "1_-1"
-frame = 22
+frame = 16
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 7 )
 animation = "0_1"
-frame = 8
+frame = 16
 playing = true
 
 [node name="Scared" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 8 )
 animation = "0_1"
-frame = 1
+frame = 6
 playing = true
 
 [node name="Hit" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 10 )
 animation = "0_1"
-frame = 8
+frame = 20
 playing = true
 
 [node name="Transforming" type="AnimatedSprite" parent="Animations"]
@@ -153,29 +149,33 @@ shape = SubResource( 1 )
 [node name="SightDetection" type="Area2D" parent="."]
 position = Vector2( 0, 30 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SightDetection"]
+[node name="SightDetectionShape" type="CollisionShape2D" parent="SightDetection"]
 position = Vector2( 0, -32 )
-shape = SubResource( 2 )
+shape = ExtResource( 14 )
 
 [node name="MeleeRange" type="Area2D" parent="."]
 position = Vector2( 0, 30 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeRange"]
+[node name="MeleeRangeShape" type="CollisionShape2D" parent="MeleeRange"]
 position = Vector2( -0.0646824, -17.6205 )
-shape = SubResource( 3 )
+shape = ExtResource( 13 )
 
 [node name="OverlapDetection" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OverlapDetection"]
 position = Vector2( 0, 48 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="HaltTimer" type="Timer" parent="."]
 one_shot = true
 [connection signal="mouse_entered" from="AIDetection" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="AIDetection" to="." method="_on_mouse_exited"]
+[connection signal="area_entered" from="SightDetection" to="." method="on_enemy_detection_entered"]
+[connection signal="area_exited" from="SightDetection" to="." method="on_enemy_detection_exited"]
 [connection signal="body_entered" from="SightDetection" to="." method="on_sight_detection_entered"]
 [connection signal="body_exited" from="SightDetection" to="." method="on_sight_detection_exited"]
+[connection signal="area_entered" from="MeleeRange" to="." method="on_enemies_entered_melee_range"]
+[connection signal="area_exited" from="MeleeRange" to="." method="on_enemies_exited_melee_range"]
 [connection signal="body_entered" from="MeleeRange" to="." method="on_entered_melee_range"]
 [connection signal="body_exited" from="MeleeRange" to="." method="on_exited_melee_range"]
 [connection signal="area_entered" from="OverlapDetection" to="." method="on_overlap_detection_entered"]
