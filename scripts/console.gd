@@ -10,6 +10,7 @@ signal print_text
 signal help
 signal show_index_all
 signal show_pos_all
+signal show_overlapping
 
 onready var input = $CanvasLayer/MainConsole/Input/InputText
 onready var output = $CanvasLayer/MainConsole/Output/OutputText
@@ -19,7 +20,8 @@ var commands = {
 	'print_text':[''],
 	'help':[],
 	'show_index_all':[],
-	'show_pos_all':[]
+	'show_pos_all':[],
+	'show_overlapping':[]
 }
 
 #initialize console

@@ -41,21 +41,21 @@ position = Vector2( 0, 0 )
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
 frames = ExtResource( 19 )
 animation = "0_1"
-frame = 9
+frame = 2
 playing = true
 
 [node name="Running" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 2 )
 animation = "1_-1"
-frame = 16
+frame = 5
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 7 )
 animation = "0_1"
-frame = 16
+frame = 21
 playing = true
 
 [node name="Scared" type="AnimatedSprite" parent="Animations"]
@@ -69,7 +69,7 @@ playing = true
 visible = false
 frames = ExtResource( 10 )
 animation = "0_1"
-frame = 20
+frame = 8
 playing = true
 
 [node name="Transforming" type="AnimatedSprite" parent="Animations"]
@@ -106,6 +106,7 @@ script = ExtResource( 105 )
 script = ExtResource( 3 )
 
 [node name="State" type="Label" parent="."]
+visible = false
 margin_left = -25.0
 margin_top = -70.0
 margin_right = 18.0
@@ -118,7 +119,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="OverlappingInfo" type="Label" parent="."]
+visible = false
+margin_left = -127.0
+margin_top = -94.0
+margin_right = 122.0
+margin_bottom = -80.0
+text = "STATE"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Info" type="Control" parent="."]
+visible = false
 margin_top = -2.0
 margin_bottom = -2.0
 __meta__ = {

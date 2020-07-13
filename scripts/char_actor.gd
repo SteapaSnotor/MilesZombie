@@ -19,6 +19,9 @@ var is_moving = false
 var _overlapping_bodies = [] setget , get_overlapping_bodies
 var occupied_tiles = []
 var grid_position = Vector2.ZERO setget , get_grid_position
+var previous_neighbours = []
+var current_moving_away = Vector2.ZERO
+var _moving_index = 1
 
 #Run from a place to another using pathfinding. 
 #Returns false if is already in place.
@@ -85,11 +88,26 @@ func move_away(from,delta):
 	
 	neighbours.sort_custom(self,'distance_sorter')
 	
-	#neighbours.remove(0)
+	if previous_neighbours != neighbours:
+		previous_neighbours = neighbours
+		_moving_index = 1
+	
 	#debug.highlight_path(neighbours,get_parent())
 	
-	return run(global_position,neighbours[0],delta,20) 
+	if current_moving_away == Vector2.ZERO:
+		current_moving_away = neighbours[0]
+		if current_moving_away == get_grid_position():
+			current_moving_away = neighbours[_moving_index]
 	
+	if !run(global_position,current_moving_away,delta,20):
+		current_moving_away = Vector2.ZERO
+		_moving_index += 1
+		
+		if _moving_index > neighbours.size()-1:
+			_moving_index = 1
+		
+		return false
+	else: return true 
 	
 func attack(body):
 	#attacks someone
@@ -112,6 +130,9 @@ func check_overlapping_state(state):
 				return true
 		
 	return false
+
+func check_any_overlapping():
+	return _overlapping_bodies.size() != 0
 
 func get_health():
 	return health

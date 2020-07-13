@@ -9,6 +9,7 @@ signal exited
 var actor = null
 var next_state = null
 var anim_node = null
+var is_overlapping = false
 var transitions = []
 var attacking_frame = 0
 
@@ -28,6 +29,10 @@ func init(actor,transitions):
 func update(delta):
 	if actor == null: return
 	
+	if actor.check_overlapping_state(['Attacking']) and actor.is_aggressive():
+		#two bodies attacking at the same spot
+		is_overlapping = true
+	
 	actor.update_facing((actor.get_player().global_position - actor.global_position).normalized())
 	
 	check_transitions()
@@ -46,7 +51,7 @@ func check_transitions():
 	elif not actor.is_seeing_player():
 		next_state = transitions[0]
 		exit()
-	elif not actor.is_player_on_melee_range():
+	elif not actor.is_player_on_melee_range() or is_overlapping:
 		next_state = transitions[1]
 		exit()
 	else: return
@@ -58,4 +63,5 @@ func exit():
 	
 	actor = null
 	anim_node = null
+	is_overlapping = false
 	emit_signal("exited",next_state)

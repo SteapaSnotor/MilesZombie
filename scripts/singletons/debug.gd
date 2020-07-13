@@ -18,6 +18,7 @@ var line_to = null
 var console = null
 var console_open = false
 var showing_positions = false
+var showing_overlapping = false
 
 func _input(event):
 	if event.is_action_pressed("console"):
@@ -26,6 +27,7 @@ func _input(event):
 #commands that are called every frame
 func _process(delta):
 	if showing_positions: show_pos_all()
+	if showing_overlapping: show_overlapping()
 
 func highlight_path(path,where):
 	#clear previous highlight
@@ -77,6 +79,7 @@ func set_console_open(open):
 		#connect signals here
 		console.connect('fill_grid',self,'fill_grid')
 		console.connect('show_pos_all',self,'show_pos_all')
+		console.connect('show_overlapping',self,'show_overlapping')
 		
 	else:
 		console.queue_free()
@@ -108,5 +111,14 @@ func show_pos_all():
 	
 	showing_positions = true
 	
-	
-	
+#show the NPCs that are overlapping
+func show_overlapping():
+	for ai in tree.get_nodes_in_group('AI'):
+		var lb = ai.get_node('OverlappingInfo')
+		lb.show()
+		var check = ai.check_any_overlapping()
+		
+		if check:lb.text = 'Overlapping: true'
+		else: lb.text = 'Overlapping: false'
+		
+	showing_overlapping = true

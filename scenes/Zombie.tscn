@@ -36,13 +36,14 @@ playing = true
 visible = false
 frames = ExtResource( 5 )
 animation = "1_-1"
+frame = 11
 playing = true
 
 [node name="Walking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 6 )
 animation = "1_-1"
-frame = 20
+frame = 5
 playing = true
 
 [node name="Dead" type="AnimatedSprite" parent="Animations"]
@@ -67,10 +68,25 @@ script = ExtResource( 9 )
 script = ExtResource( 11 )
 
 [node name="State" type="Label" parent="."]
+visible = false
 margin_left = -14.2998
 margin_top = -83.1018
 margin_right = 25.7002
 margin_bottom = -69.1018
+text = "State"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OverlappingInfo" type="Label" parent="."]
+visible = false
+margin_left = -143.0
+margin_top = -99.0
+margin_right = 153.0
+margin_bottom = -85.0
 text = "State"
 align = 1
 valign = 1
@@ -87,6 +103,7 @@ shape = ExtResource( 12 )
 [node name="SightDetection" type="Area2D" parent="."]
 
 [node name="SightDetectionShape" type="CollisionShape2D" parent="SightDetection"]
+position = Vector2( 0.540359, -3.24216 )
 shape = ExtResource( 13 )
 
 [node name="OverlapDetection" type="Area2D" parent="."]
