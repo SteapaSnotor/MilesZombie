@@ -32,7 +32,7 @@ var _halt_time = 0.5
 var _seeing_player = false
 
 const default_speed = 150
-const player_max_distance = 100
+const player_max_distance = 5000
 
 #initialize
 func init(id,player):
@@ -114,6 +114,8 @@ func halt_movement(timer = false):
 func _on_enemy_sight_entered(area):
 	if area.name == 'AIDetection' and _enemies_on_sight.find(area.get_parent()) == -1:
 		if area.get_parent().get_groups().find('Enemy')  != -1:
+			var body = area.get_parent()
+			if not body.is_connected('died',self,'_on_enemy_died'): body.connect('died',self,'_on_enemy_died')
 			_enemies_on_sight.append(area.get_parent())
 
 func _on_enemy_sight_exited(area):
@@ -130,6 +132,7 @@ func _on_melee_range_entered(area):
 	if area.name == 'MeleeRange':
 		var body = area.get_parent()
 		if _enemies_on_melee_range.find(body) == -1:
+			if not body.is_connected('died',self,'_on_enemy_died'): body.connect('died',self,'_on_enemy_died')
 			_enemies_on_melee_range.append(body)
 	
 func _on_melee_range_exited(area):
@@ -151,5 +154,14 @@ func on_overlap_detection_exited(area):
 			_overlapping_bodies.erase(area.get_parent())
 			emit_signal('overlapping_stopped')
 
-
+#when a enemy that this zombie saw/see or is fighting/fought, dies.
+#remove it from arrays.
+func _on_enemy_died(enemy):
+	if _enemies_on_melee_range.find(enemy) != -1:
+		_enemies_on_melee_range.remove(_enemies_on_melee_range.find(enemy))
+	
+	if _enemies_on_sight.find(enemy) != -1:
+		_enemies_on_sight.remove(_enemies_on_sight.find(enemy))
+	print('enemy died')
+	
 

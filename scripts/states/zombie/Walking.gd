@@ -12,6 +12,7 @@ var is_overlapping = false
 var is_moving_towards_player = false
 var transitions = []
 var next_state = null
+var d_target = ''
 
 func init(actor,transitions):
 	self.actor = actor
@@ -43,8 +44,8 @@ func check_transitions():
 	if actor.get_health() <= 0:
 		next_state = transitions[2]
 		exit()
-	elif not actor.is_moving and actor.is_seeing_enemies():
-		if actor.is_enemy_on_melee_range(actor.get_closest_on_sight()):
+	elif actor.is_seeing_enemies():
+		if actor.is_enemy_on_melee_range(actor.get_closest_on_sight()) and not is_overlapping:
 			next_state = transitions[1]
 			exit()
 	elif is_moving_towards_player:
@@ -61,7 +62,9 @@ func set_target():
 		target = actor.get_player().get_grid_position()
 		is_moving_towards_player = true
 	elif actor.is_seeing_enemies():
-		target = actor.get_closest_on_sight().get_global_position()
+		target = actor.get_closest_on_sight().get_grid_position()
+		if target == actor.get_grid_position():
+			pass
 	else: return
 	
 func exit():

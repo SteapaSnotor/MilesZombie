@@ -12,6 +12,7 @@ var next_state = null
 var anim_node = null
 var transitions = []
 var attacking_frame = 0
+var is_overlapping = false
 
 func init(actor,transitions):
 	yield(actor,'new_animation')
@@ -28,6 +29,9 @@ func init(actor,transitions):
 func update(delta):
 	if actor == null: return
 	
+	if actor.check_overlapping_state(['Attacking']):
+		is_overlapping = true
+	
 	#look at the enemy the zombie is attacking
 	if actor.is_enemy_on_melee_range(attacking_enemy):
 		actor.look_at(attacking_enemy.get_global_position())
@@ -42,6 +46,9 @@ func check_transitions():
 		next_state = transitions[2]
 		exit()
 	elif actor.is_seeing_enemies() and not actor.is_enemy_on_melee_range(attacking_enemy):
+		next_state = transitions[1]
+		exit()
+	elif actor.is_seeing_enemies() and is_overlapping:
 		next_state = transitions[1]
 		exit()
 	elif not actor.is_seeing_enemies(): 
@@ -60,4 +67,5 @@ func exit():
 	
 	actor = null
 	anim_node = null
+	is_overlapping = false
 	emit_signal("exited",next_state)

@@ -8,6 +8,7 @@ extends KinematicBody2D
 signal attacked
 signal occupying_tile
 signal free_tile
+signal died
 
 var speed = 150
 var health = 100 setget set_health, get_health
@@ -191,6 +192,8 @@ func distance_body_sorter(a,b):
 
 func set_health(value):
 	health = value
+	
+	if health <= 0: emit_signal("died",self)
 	emit_signal("attacked")
 
 func set_occupied_place(pos):
