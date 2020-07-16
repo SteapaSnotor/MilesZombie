@@ -30,21 +30,21 @@ position = Vector2( 0, 0 )
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
 frames = ExtResource( 4 )
 animation = "0_1"
-frame = 3
+frame = 4
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 5 )
 animation = "1_-1"
-frame = 10
+frame = 5
 playing = true
 
 [node name="Walking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 6 )
 animation = "1_-1"
-frame = 17
+frame = 10
 playing = true
 
 [node name="Dead" type="AnimatedSprite" parent="Animations"]
@@ -69,6 +69,7 @@ script = ExtResource( 9 )
 script = ExtResource( 11 )
 
 [node name="State" type="Label" parent="."]
+visible = false
 margin_left = -14.2998
 margin_top = -83.1018
 margin_right = 25.7002
@@ -102,6 +103,7 @@ position = Vector2( 4.33775, 24.2896 )
 shape = ExtResource( 12 )
 
 [node name="SightDetection" type="Area2D" parent="."]
+visible = false
 
 [node name="SightDetectionShape" type="CollisionShape2D" parent="SightDetection"]
 position = Vector2( 0.540359, -3.24216 )

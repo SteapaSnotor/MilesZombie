@@ -74,6 +74,9 @@ func is_player_on_melee_range():
 func is_enemies_on_melee_range():
 	return enemies_on_melee_range.size() != 0
 
+func is_enemy_on_melee_range(enemy):
+	return enemies_on_melee_range.find(enemy) != -1
+
 func is_infected():
 	return _infected
 
@@ -82,6 +85,12 @@ func get_player():
 
 func get_current_animation_node():
 	return current_animation_node
+
+func get_closest_on_sight():
+	var enemies = enemies_on_sight.duplicate()
+	enemies.sort_custom(self,'distance_body_sorter')
+	
+	return enemies.front()
 
 #updates the current animation according to its state and direction
 #the player is facing.
@@ -114,6 +123,7 @@ func disable_areas():
 	$AIDetection.get_child(0).set_disabled(true)
 	$SightDetection.get_child(0).set_disabled(true)
 	$MeleeRange.get_child(0).set_disabled(true)
+	$OverlapDetection.get_child(0).set_disabled(true)
 
 func do_infection():
 	emit_signal("infected",global_position,id,self)
@@ -148,6 +158,9 @@ func on_sight_detection_exited(body):
 func on_enemy_detection_entered(area):
 	if area.get_parent().is_in_group('PlayerAlly') and enemies_on_sight.find(area.get_parent()) == -1:
 		enemies_on_sight.append(area.get_parent())
+		
+		if not area.get_parent().is_connected('died',self,'on_enemy_died'):
+			area.get_parent().connect('died',self,'on_enemy_died')
 
 func on_enemy_detection_exited(area):
 	if enemies_on_sight.find(area.get_parent()) != -1:
@@ -160,9 +173,12 @@ func on_exited_melee_range(body):
 	if body == player: _player_on_melee_range = false
 
 func on_enemies_entered_melee_range(area):
-	if area.get_parent().is_in_group('PlayerAlly'):
+	if area.get_parent().is_in_group('PlayerAlly') and area.name == 'MeleeRange':
 		if enemies_on_melee_range.find(area.get_parent()) == -1:
 			enemies_on_melee_range.append(area.get_parent())
+			
+			if not area.get_parent().is_connected('died',self,'on_enemy_died'):
+				area.get_parent().connect('died',self,'on_enemy_died')
 
 func on_enemies_exited_melee_range(area):
 	if area.get_parent().is_in_group('PlayerAlly'):
@@ -171,7 +187,7 @@ func on_enemies_exited_melee_range(area):
 
 func on_overlap_detection_entered(area):
 	if area.name == 'OverlapDetection' and area.get_parent() != self:
-		if _overlapping_bodies.find(area.get_parent()) == -1:
+		if _overlapping_bodies.find(area.get_parent()) == -1 and area.get_parent().is_in_group('Civilian'):
 			_overlapping_bodies.append(area.get_parent()) 
 			emit_signal('overlapping')
 	
@@ -180,3 +196,21 @@ func on_overlap_detection_exited(area):
 		if _overlapping_bodies.find(area.get_parent()) != -1:
 			_overlapping_bodies.erase(area.get_parent())
 			emit_signal('overlapping_stopped')
+
+#when an enemy this player intereacted it dies. Remove arrays containing
+#it.
+func on_enemy_died(enemy):
+	if enemies_on_melee_range.find(enemy) != -1:
+		enemies_on_melee_range.remove(enemies_on_melee_range.find(enemy))
+	
+	if enemies_on_sight.find(enemy) != -1:
+		enemies_on_sight.remove(enemies_on_sight.find(enemy))
+
+
+
+
+
+
+
+
+

@@ -225,7 +225,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 29.1961
+radius = 37.4822
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 292.607
@@ -243,35 +243,35 @@ script = ExtResource( 2 )
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
 frames = ExtResource( 7 )
 animation = "0_1"
-frame = 21
+frame = 7
 playing = true
 
 [node name="Moving" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 1 )
 animation = "-1_-1"
-frame = 22
+frame = 8
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 8 )
 animation = "1_-1"
-frame = 8
+frame = 12
 playing = true
 
 [node name="Biting" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = SubResource( 1 )
 animation = "1_-1"
-frame = 11
+frame = 19
 playing = true
 
 [node name="Dead" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 7 )
 animation = "0_1"
-frame = 20
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -295,6 +295,7 @@ script = ExtResource( 180 )
 script = ExtResource( 11 )
 
 [node name="State" type="Label" parent="."]
+visible = false
 margin_left = -65.0
 margin_top = -74.0
 margin_right = 36.0

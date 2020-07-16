@@ -111,6 +111,11 @@ func halt_movement(timer = false):
 		halt_timer.start()
 	else: return
 
+func disable_areas():
+	$MeleeRange.get_child(0).set_disabled(true)
+	$SightDetection.get_child(0).set_disabled(true)
+	$OverlapDetection.get_child(0).set_disabled(true)
+
 func _on_enemy_sight_entered(area):
 	if area.name == 'AIDetection' and _enemies_on_sight.find(area.get_parent()) == -1:
 		if area.get_parent().get_groups().find('Enemy')  != -1:
@@ -162,6 +167,5 @@ func _on_enemy_died(enemy):
 	
 	if _enemies_on_sight.find(enemy) != -1:
 		_enemies_on_sight.remove(_enemies_on_sight.find(enemy))
-	print('enemy died')
 	
 

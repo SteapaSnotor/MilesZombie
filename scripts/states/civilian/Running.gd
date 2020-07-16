@@ -62,7 +62,10 @@ func check_transitions():
 	elif actor.is_aggressive() and actor.is_player_on_melee_range() and not is_overlapping:
 		next_state = transitions[1]
 		exit()
-	elif actor.is_moving and actor.is_aggressive() and was_attacked:
+	elif actor.is_aggressive() and actor.is_enemies_on_melee_range() and not is_overlapping:
+		next_state = transitions[1]
+		exit()
+	elif actor.is_aggressive() and was_attacked and not is_overlapping:
 		next_state = transitions[1]
 		exit()
 	elif not actor.is_moving and not actor.is_aggressive():
@@ -72,8 +75,22 @@ func check_transitions():
 	
 func set_target():
 	if actor.is_aggressive():
-		
-		target = actor.get_player().get_grid_position()
+		if actor.is_seeing_enemies() and actor.is_seeing_player():
+			#is seeing both the player and enemies, choice the closest one.
+			var c_enemy = actor.get_closest_on_sight().get_grid_position()
+			var c_player = actor.get_player().get_grid_position()
+			
+			if actor.get_grid_position().distance_to(c_player) < actor.get_grid_position().distance_to(c_enemy):
+				target = c_player
+			else: target = c_enemy
+			
+		elif actor.is_seeing_enemies():
+			#target the closest enemy
+			target = actor.get_closest_on_sight().get_grid_position()
+		else:
+			#target the player
+			target = actor.get_player().get_grid_position()
+			
 	elif not actor.is_aggressive() and target == null:
 		var reflected = actor.get_grid_position() - actor.get_player().get_global_position()
 		reflected = reflected.normalized() * 5

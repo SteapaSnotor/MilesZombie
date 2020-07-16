@@ -41,34 +41,35 @@ position = Vector2( 0, 0 )
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
 frames = ExtResource( 19 )
 animation = "0_1"
-frame = 6
+frame = 9
 playing = true
 
 [node name="Running" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 2 )
 animation = "1_-1"
-frame = 20
+frame = 5
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 7 )
 animation = "0_1"
-frame = 20
+frame = 7
 playing = true
 
 [node name="Scared" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 8 )
 animation = "0_1"
+frame = 6
 playing = true
 
 [node name="Hit" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 10 )
 animation = "0_1"
-frame = 3
+frame = 11
 playing = true
 
 [node name="Transforming" type="AnimatedSprite" parent="Animations"]
@@ -105,6 +106,7 @@ script = ExtResource( 105 )
 script = ExtResource( 3 )
 
 [node name="State" type="Label" parent="."]
+visible = false
 margin_left = -25.0
 margin_top = -70.0
 margin_right = 18.0
@@ -155,12 +157,14 @@ __meta__ = {
 
 [node name="AIDetection" type="Area2D" parent="."]
 position = Vector2( 0, 30 )
+priority = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AIDetection"]
 position = Vector2( 0, -22 )
 shape = SubResource( 1 )
 
 [node name="SightDetection" type="Area2D" parent="."]
+visible = false
 position = Vector2( 0, 30 )
 
 [node name="SightDetectionShape" type="CollisionShape2D" parent="SightDetection"]
