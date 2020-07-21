@@ -53,6 +53,9 @@ func check_transitions():
 		if not actor.is_seeing_player() or player_p.distance_to(actor.get_grid_position()) < actor.player_max_distance:
 			next_state = transitions[0]
 			exit()
+	elif not is_moving_towards_player and not actor.is_seeing_enemies():
+		next_state = transitions[0]
+		exit()
 	else: return
 
 func set_target():

@@ -41,35 +41,35 @@ position = Vector2( 0, 0 )
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
 frames = ExtResource( 19 )
 animation = "0_1"
-frame = 9
+frame = 5
 playing = true
 
 [node name="Running" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 2 )
 animation = "1_-1"
-frame = 5
+frame = 14
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 7 )
 animation = "0_1"
-frame = 7
+frame = 12
 playing = true
 
 [node name="Scared" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 8 )
 animation = "0_1"
-frame = 6
+frame = 5
 playing = true
 
 [node name="Hit" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 10 )
 animation = "0_1"
-frame = 11
+frame = 16
 playing = true
 
 [node name="Transforming" type="AnimatedSprite" parent="Animations"]
