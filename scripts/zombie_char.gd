@@ -32,7 +32,7 @@ var _halt_time = 0.5
 var _seeing_player = false
 
 const default_speed = 150
-const player_max_distance = 5000
+const player_max_distance = 200
 
 #initialize
 func init(id,player):

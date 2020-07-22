@@ -10,6 +10,7 @@ var actor = null
 var transitions = []
 
 var next_state = null
+var is_overlapping = false
 
 func init(actor,transitions):
 	self.actor = actor
@@ -17,6 +18,9 @@ func init(actor,transitions):
 	
 func update(delta):
 	if actor == null: return
+	
+	if actor.check_overlapping_state(['Idle']):
+		is_overlapping = true
 	
 	actor.look_at(actor.get_player().get_global_position())
 	
@@ -37,15 +41,20 @@ func check_transitions():
 		else:
 			next_state = transitions[1]
 			exit()
+	elif is_overlapping:
+		next_state = transitions[1]
+		exit()
 	elif actor.is_seeing_player():
 		var p_player = actor.get_player().get_grid_position()
 		
-		if actor.get_grid_position().distance_to(p_player) > actor.player_max_distance:
+		if actor.get_grid_position().distance_to(p_player) > (actor.player_max_distance+50):
 			next_state = transitions[1]
 			exit()
 	else: return
 	
 	
 func exit():
-	actor = null
+	self.actor = null
+	self.is_overlapping = false
+	
 	emit_signal("exited",next_state)
