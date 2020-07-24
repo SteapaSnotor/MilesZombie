@@ -39,7 +39,7 @@ func update(delta):
 	if is_overlapping_idle:
 		is_overlapping_idle = actor.move_away(target,delta)
 	
-	if not is_overlapping and not is_overlapping_idle:
+	if not is_overlapping and not is_overlapping_idle and target != null:
 		actor.is_moving = actor.run(actor.get_grid_position(),target,delta)
 	
 	check_transitions()

@@ -59,7 +59,9 @@ func check_transitions():
 #try to attack the enemy
 func attack():
 	if anim_node.get_frame() == attacking_frame and attacking_enemy != null:
-		actor.attack(attacking_enemy)
+		var e_health = actor.attack(attacking_enemy)
+		if e_health <= 0:
+			attacking_enemy.do_infection()
 
 func exit():
 	#disconnect signals
