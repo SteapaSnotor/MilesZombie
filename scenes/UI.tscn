@@ -1,3 +1,12 @@
 [gd_scene format=2]
 
 [node name="UI" type="Node"]
+
+[node name="InfoLayer" type="CanvasLayer" parent="."]
+
+[node name="CallingInfo" type="Control" parent="InfoLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
