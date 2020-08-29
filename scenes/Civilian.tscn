@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/civilian_char.gd" type="Script" id=1]
-[ext_resource path="res://resources/animations_data/johnny_running2.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://resources/animations_data/johnny_idle.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://scripts/states/civilian/Dead.gd" type="Script" id=3]
 [ext_resource path="res://sprites/prototype_phase/bar_b.png" type="Texture" id=4]
 [ext_resource path="res://sprites/prototype_phase/bar_h.png" type="Texture" id=5]
@@ -14,11 +14,11 @@
 [ext_resource path="res://resources/animations_data/johnny_dead.tres" type="SpriteFrames" id=12]
 [ext_resource path="res://resources/collision_shapes/civ_melee_range.tres" type="Shape2D" id=13]
 [ext_resource path="res://resources/collision_shapes/sight_detection.tres" type="Shape2D" id=14]
+[ext_resource path="res://resources/animations_data/johnny_running.tres" type="SpriteFrames" id=15]
 [ext_resource path="res://scenes/FSM.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scripts/states/civilian/Idle.gd" type="Script" id=17]
 [ext_resource path="res://scripts/states/civilian/Running.gd" type="Script" id=18]
-[ext_resource path="res://resources/animations_data/johnny_idle.tres" type="SpriteFrames" id=19]
-[ext_resource path="res://resources/animations_data/johnny_transforming.tres" type="SpriteFrames" id=104]
+[ext_resource path="res://resources/animations_data/johnny_transforming.tres" type="SpriteFrames" id=19]
 [ext_resource path="res://scripts/states/civilian/Transforming.gd" type="Script" id=105]
 [ext_resource path="res://scripts/states/civilian/Scared.gd" type="Script" id=187]
 
@@ -39,43 +39,43 @@ script = ExtResource( 1 )
 position = Vector2( 0, 0 )
 
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
-frames = ExtResource( 19 )
+frames = ExtResource( 2 )
 animation = "0_1"
-frame = 13
+frame = 4
 playing = true
 
 [node name="Running" type="AnimatedSprite" parent="Animations"]
 visible = false
-frames = ExtResource( 2 )
-animation = "1_-1"
-frame = 5
+frames = ExtResource( 15 )
+animation = "0_1"
+frame = 2
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 7 )
-animation = "0_1"
-frame = 1
+animation = "0_-1"
+frame = 7
 playing = true
 
 [node name="Scared" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 8 )
 animation = "0_1"
-frame = 3
+frame = 2
 playing = true
 
 [node name="Hit" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 10 )
 animation = "0_1"
-frame = 8
+frame = 16
 playing = true
 
 [node name="Transforming" type="AnimatedSprite" parent="Animations"]
 visible = false
-frames = ExtResource( 104 )
-animation = "0_1"
+frames = ExtResource( 19 )
+animation = "1_1"
 
 [node name="Dead" type="AnimatedSprite" parent="Animations"]
 visible = false

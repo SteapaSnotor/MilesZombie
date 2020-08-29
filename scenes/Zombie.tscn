@@ -3,10 +3,10 @@
 [ext_resource path="res://scripts/zombie_char.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Animations.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/FSM.tscn" type="PackedScene" id=3]
-[ext_resource path="res://resources/animations_data/jzombie_idle.tres" type="SpriteFrames" id=4]
-[ext_resource path="res://resources/animations_data/jzombie_attacking.tres" type="SpriteFrames" id=5]
-[ext_resource path="res://resources/animations_data/jzombie_running.tres" type="SpriteFrames" id=6]
-[ext_resource path="res://resources/animations_data/jzombie_dead.tres" type="SpriteFrames" id=7]
+[ext_resource path="res://resources/animations_data/bzombie_idle.tres" type="SpriteFrames" id=4]
+[ext_resource path="res://resources/animations_data/bzombie_attacking.tres" type="SpriteFrames" id=5]
+[ext_resource path="res://resources/animations_data/bzombie_running.tres" type="SpriteFrames" id=6]
+[ext_resource path="res://resources/animations_data/bzombie_dead.tres" type="SpriteFrames" id=7]
 [ext_resource path="res://scripts/states/zombie/Idle.gd" type="Script" id=8]
 [ext_resource path="res://scripts/states/zombie/Walking.gd" type="Script" id=9]
 [ext_resource path="res://scripts/states/zombie/Attacking.gd" type="Script" id=10]
@@ -30,28 +30,27 @@ position = Vector2( 0, 0 )
 [node name="Idle" type="AnimatedSprite" parent="Animations"]
 frames = ExtResource( 4 )
 animation = "0_1"
+frame = 9
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 5 )
-animation = "1_-1"
-frame = 5
+animation = "0_1"
+frame = 11
 playing = true
 
 [node name="Walking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 6 )
-animation = "1_-1"
+animation = "0_1"
 frame = 20
 playing = true
 
 [node name="Dead" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 7 )
-animation = "1_-1"
-frame = 9
-playing = true
+animation = "1_1"
 
 [node name="FSM" parent="." instance=ExtResource( 3 )]
 
