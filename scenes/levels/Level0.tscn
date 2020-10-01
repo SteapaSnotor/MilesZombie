@@ -1,10 +1,10 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://scenes/Miles.tscn" type="PackedScene" id=1]
 [ext_resource path="res://resources/tiles/pathfinding/tilemap0.tmx" type="PackedScene" id=2]
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=3]
 [ext_resource path="res://scenes/PlayerController.tscn" type="PackedScene" id=4]
-[ext_resource path="res://resources/tiles/graveyard/graveyard_tilemap.tmx" type="PackedScene" id=5]
+[ext_resource path="res://resources/tiles/graveyard/graveyard_map.tscn" type="PackedScene" id=5]
 [ext_resource path="res://sprites/prototype_phase/0036.exr" type="Texture" id=6]
 [ext_resource path="res://sprites/fx/fire0/fire0036.exr" type="Texture" id=7]
 [ext_resource path="res://sprites/fx/fire0/fire0037.exr" type="Texture" id=8]
@@ -27,6 +27,38 @@
 [ext_resource path="res://sprites/fx/fire0/fire0054.exr" type="Texture" id=25]
 [ext_resource path="res://sprites/fx/fire0/fire0055.exr" type="Texture" id=26]
 [ext_resource path="res://sprites/fx/fire0/fire0056.exr" type="Texture" id=27]
+[ext_resource path="res://sprites/tiles/graveyard/statue.png" type="Texture" id=28]
+[ext_resource path="res://sprites/tiles/graveyard/mausoleum.png" type="Texture" id=29]
+[ext_resource path="res://scenes/shaders/fog.tscn" type="PackedScene" id=30]
+[ext_resource path="res://sprites/tiles/graveyard/meteorpng.png" type="Texture" id=31]
+[ext_resource path="res://sprites/fx/fire_particle.png" type="Texture" id=32]
+[ext_resource path="res://sprites/ui/cursor/anim_0/cursor0001.png" type="Texture" id=33]
+[ext_resource path="res://sprites/ui/cursor/anim_0/cursor0002.png" type="Texture" id=34]
+[ext_resource path="res://sprites/ui/cursor/anim_0/cursor0003.png" type="Texture" id=35]
+[ext_resource path="res://sprites/ui/cursor/anim_0/cursor0004.png" type="Texture" id=36]
+[ext_resource path="res://sprites/ui/cursor/anim_0/cursor0005.png" type="Texture" id=37]
+[ext_resource path="res://sprites/ui/cursor/anim_0/cursor0006.png" type="Texture" id=38]
+[ext_resource path="res://sprites/ui/cursor/anim_0/cursor0007.png" type="Texture" id=39]
+[ext_resource path="res://sprites/ui/cursor/anim_0/cursor0008.png" type="Texture" id=40]
+[ext_resource path="res://sprites/ui/cursor/anim_0/cursor0009.png" type="Texture" id=41]
+[ext_resource path="res://sprites/ui/cursor/anim_0/cursor0010.png" type="Texture" id=42]
+[ext_resource path="res://sprites/ui/cursor/anim_0/cursor0011.png" type="Texture" id=43]
+[ext_resource path="res://sprites/ui/cursor/anim_0/cursor0012.png" type="Texture" id=44]
+[ext_resource path="res://sprites/ui/cursor/anim_0/cursor0013.png" type="Texture" id=45]
+[ext_resource path="res://sprites/ui/cursor/pointing.png" type="Texture" id=46]
+[ext_resource path="res://sprites/ui/cursor/mouth_anim/mouth0001.png" type="Texture" id=47]
+[ext_resource path="res://sprites/ui/cursor/mouth_anim/mouth0002.png" type="Texture" id=48]
+[ext_resource path="res://sprites/ui/cursor/mouth_anim/mouth0003.png" type="Texture" id=49]
+[ext_resource path="res://sprites/ui/cursor/mouth_anim/mouth0004.png" type="Texture" id=50]
+[ext_resource path="res://sprites/ui/cursor/mouth_anim/mouth0005.png" type="Texture" id=51]
+[ext_resource path="res://sprites/ui/cursor/mouth_anim/mouth0006.png" type="Texture" id=52]
+[ext_resource path="res://sprites/ui/cursor/mouth_anim/mouth0007.png" type="Texture" id=53]
+[ext_resource path="res://sprites/ui/cursor/mouth_anim/mouth0008.png" type="Texture" id=54]
+[ext_resource path="res://sprites/ui/cursor/mouth_anim/mouth0009.png" type="Texture" id=55]
+[ext_resource path="res://sprites/ui/cursor/mouth_anim/mouth0010.png" type="Texture" id=56]
+[ext_resource path="res://sprites/ui/cursor/mouth_anim/mouth0011.png" type="Texture" id=57]
+[ext_resource path="res://sprites/ui/cursor/mouth_anim/mouth0012.png" type="Texture" id=58]
+[ext_resource path="res://sprites/ui/cursor/mouth_anim/mouth0013.png" type="Texture" id=59]
 [ext_resource path="res://scenes/Civilian.tscn" type="PackedScene" id=116]
 [ext_resource path="res://sprites/ui/evil-hand (1).png" type="Texture" id=160]
 [ext_resource path="res://sprites/prototype_phase/TEST.exr" type="Texture" id=161]
@@ -41,6 +73,37 @@ animations = [ {
 "loop": true,
 "name": "default",
 "speed": 20.0
+} ]
+
+[sub_resource type="CanvasItemMaterial" id=3]
+blend_mode = 1
+
+[sub_resource type="ParticlesMaterial" id=4]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 8.0
+flag_disable_z = true
+gravity = Vector3( 0, -98, 0 )
+initial_velocity_random = 1.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color = Color( 0.831373, 0.392157, 0.14902, 1 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 47 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 53 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 56 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 59 ) ],
+"loop": true,
+"name": "default",
+"speed": 28.0
 } ]
 
 [node name="Level0" type="Node2D"]
@@ -64,6 +127,7 @@ position = Vector2( 479.496, 421.619 )
 texture = ExtResource( 160 )
 
 [node name="Sprite2" type="Sprite" parent="ActorsAndTiles"]
+visible = false
 position = Vector2( 709.599, 234.265 )
 texture = ExtResource( 161 )
 
@@ -120,19 +184,315 @@ _is_aggressive = false
 visible = false
 z_index = -1
 
-[node name="graveyard_tilemap" parent="GroundTiles" instance=ExtResource( 5 )]
-z_index = -1
-
 [node name="Sprite" type="Sprite" parent="GroundTiles"]
+visible = false
 position = Vector2( 1060.13, 513.363 )
 texture = ExtResource( 6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="GroundTiles"]
-position = Vector2( 821.732, 509.407 )
+visible = false
+position = Vector2( 2028.4, 890.079 )
 frames = SubResource( 2 )
-frame = 16
+frame = 15
 playing = true
+offset = Vector2( -10.9495, -4.37811 )
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="GroundTiles"]
+position = Vector2( 619.552, 245.203 )
+frames = SubResource( 2 )
+frame = 14
+playing = true
+offset = Vector2( -10.9495, -4.37811 )
+
+[node name="Sprite2" type="Sprite" parent="GroundTiles"]
+visible = false
+position = Vector2( 1070.8, 1428.91 )
+texture = ExtResource( 28 )
+
+[node name="Node2D" parent="GroundTiles" instance=ExtResource( 5 )]
+z_index = -1
+
+[node name="Sprite3" type="Sprite" parent="GroundTiles"]
+visible = false
+position = Vector2( 1337.21, 204.974 )
+z_index = -1
+texture = ExtResource( 29 )
+
+[node name="Sprite4" type="Sprite" parent="GroundTiles"]
+visible = false
+position = Vector2( 2052.87, 319.562 )
+texture = ExtResource( 31 )
 
 [node name="PlayerController" parent="." instance=ExtResource( 4 )]
 
+[node name="Shaders" type="Node2D" parent="."]
+
+[node name="Spark" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1775.83, 578.733 )
+scale = Vector2( 0.1, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark2" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1587.68, 806.498 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark5" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1488.68, 726.541 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark6" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1687.48, 838.175 )
+scale = Vector2( 0.2, 0.1 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark7" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1870.18, 797.495 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark8" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1595.27, 720.748 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark12" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1612.37, 630.497 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark13" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1522.12, 738.798 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark14" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1810.92, 604.847 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark15" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1896.18, 800.397 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark16" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1888.82, 620.047 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark17" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1930.62, 710.298 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark18" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1934.42, 837.599 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark19" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1627.97, 559.794 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark20" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1722.49, 538.314 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark21" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1507.69, 660.033 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark22" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1489.7, 853.128 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark9" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1595.27, 669.664 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark10" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1856.78, 683.17 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark11" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1897.29, 749.468 )
+scale = Vector2( 0.3, 0.2 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark4" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1782.41, 864.426 )
+scale = Vector2( 0.15, 0.15 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Spark3" type="Particles2D" parent="Shaders"]
+material = SubResource( 3 )
+position = Vector2( 1682.22, 553.869 )
+scale = Vector2( 0.1, 0.1 )
+z_index = -1
+amount = 25
+lifetime = 1.2
+preprocess = 20.0
+process_material = SubResource( 4 )
+texture = ExtResource( 32 )
+
+[node name="Fog" parent="Shaders" instance=ExtResource( 30 )]
+position = Vector2( 747.736, 861.948 )
+scale = Vector2( 1, 1.737 )
+
 [node name="PlayerCamera" parent="." instance=ExtResource( 231 )]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.537255, 0.537255, 0.537255, 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 901.951, 340.235 )
+scale = Vector2( 0.7, 0.7 )
+frames = SubResource( 5 )
+frame = 10
+playing = true
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 920.32, 416.81 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 46 )
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+position = Vector2( 1096.77, 423.831 )
+scale = Vector2( 0.6, 0.6 )
+frames = SubResource( 6 )
+frame = 4
+playing = true

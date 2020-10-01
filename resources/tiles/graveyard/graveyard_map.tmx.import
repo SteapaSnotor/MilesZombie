@@ -1,0 +1,22 @@
+[remap]
+
+importer="vnen.tiled_importer"
+type="PackedScene"
+path="res://.import/graveyard_map.tmx-a6bccf8a6bbede8a14099ebc14666a4b.scn"
+
+[deps]
+
+source_file="res://resources/tiles/graveyard/graveyard_map.tmx"
+dest_files=[ "res://.import/graveyard_map.tmx-a6bccf8a6bbede8a14099ebc14666a4b.scn" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=false
+uv_clip=true
+image_flags=7
+collision_layer=1
+embed_internal_images=false
+save_tiled_properties=false
+add_background=true
+post_import_script=""

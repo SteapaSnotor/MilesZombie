@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://sprites/fx/bg_green.png" type="Texture" id=2]
+[ext_resource path="res://scenes/shaders/fog.tres" type="Material" id=3]
+
+[node name="Fog" type="Node2D"]
+
+[node name="bg" type="Sprite" parent="."]
+visible = false
+position = Vector2( 504.642, 302.742 )
+texture = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 3 )
+position = Vector2( 530.848, 259.192 )
+scale = Vector2( 25.1738, 12.9127 )
+texture = ExtResource( 1 )
