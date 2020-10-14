@@ -1,6 +1,10 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/mouse_cursor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/UI.gd" type="Script" id=28]
 
 [node name="UI" type="Node"]
+script = ExtResource( 28 )
 
 [node name="InfoLayer" type="CanvasLayer" parent="."]
 
@@ -10,3 +14,7 @@ margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MouseLayer" type="CanvasLayer" parent="."]
+
+[node name="MouseCursor" parent="MouseLayer" instance=ExtResource( 1 )]

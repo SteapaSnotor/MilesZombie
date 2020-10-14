@@ -16,7 +16,7 @@ var version = '0.0.1'
 func _ready():
 	#TODO: initialize main menu first
 	init_world()
-	pass
+	init_gui()
 	
 func init_world():
 	world = get_child(0)
@@ -25,6 +25,7 @@ func init_world():
 	#TODO: connect signals
 
 func init_gui():
-	pass
+	gui = get_child(2)
+	gui.init()
 	
 
