@@ -5,6 +5,10 @@ extends Node2D
 """
 
 signal initialized
+signal enemy_selected
+signal enemy_unselected
+signal box_selected
+signal box_unselected
 
 var controller = null
 var camera = null
@@ -39,7 +43,6 @@ func init():
 	#initialize the enemies
 	init_AI()
 	
-	
 	emit_signal("initialized")
 
 func init_AI():
@@ -48,6 +51,8 @@ func init_AI():
 			object.init(player)
 			object.connect('selected',player,'on_enemy_selected')
 			object.connect('unselected',player,'on_enemy_unselected')
+			object.connect('selected',self,'_on_enemy_selected')
+			object.connect('unselected',self,'_on_enemy_unselected')
 			object.connect('infected',self,'add_zombie')
 			
 func add_zombie(at,id=0,actor=null,timer=null):
@@ -77,3 +82,9 @@ func get_path_map():
 
 func get_z_tree():
 	return $ActorsAndTiles
+
+func _on_enemy_selected(enemy):
+	emit_signal("enemy_selected")
+
+func _on_enemy_unselected(enemy):
+	emit_signal("enemy_unselected")

@@ -28,3 +28,6 @@ func load_current_level():
 	
 func unload_level():
 	pass
+
+func get_current_level():
+	return current_level

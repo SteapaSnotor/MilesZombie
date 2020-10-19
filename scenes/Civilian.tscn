@@ -48,28 +48,27 @@ playing = true
 visible = false
 frames = ExtResource( 15 )
 animation = "0_1"
-frame = 2
+frame = 13
 playing = true
 
 [node name="Attacking" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 7 )
 animation = "0_-1"
-frame = 7
+frame = 6
 playing = true
 
 [node name="Scared" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 8 )
 animation = "0_1"
-frame = 2
 playing = true
 
 [node name="Hit" type="AnimatedSprite" parent="Animations"]
 visible = false
 frames = ExtResource( 10 )
 animation = "0_1"
-frame = 16
+frame = 13
 playing = true
 
 [node name="Transforming" type="AnimatedSprite" parent="Animations"]

@@ -193,14 +193,14 @@ texture = ExtResource( 6 )
 visible = false
 position = Vector2( 2028.4, 890.079 )
 frames = SubResource( 2 )
-frame = 15
+frame = 16
 playing = true
 offset = Vector2( -10.9495, -4.37811 )
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="GroundTiles"]
 position = Vector2( 619.552, 245.203 )
 frames = SubResource( 2 )
-frame = 14
+frame = 15
 playing = true
 offset = Vector2( -10.9495, -4.37811 )
 
@@ -482,7 +482,7 @@ color = Color( 0.537255, 0.537255, 0.537255, 1 )
 position = Vector2( 901.951, 340.235 )
 scale = Vector2( 0.7, 0.7 )
 frames = SubResource( 5 )
-frame = 10
+frame = 12
 playing = true
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -494,5 +494,5 @@ texture = ExtResource( 46 )
 position = Vector2( 1096.77, 423.831 )
 scale = Vector2( 0.6, 0.6 )
 frames = SubResource( 6 )
-frame = 4
+frame = 7
 playing = true

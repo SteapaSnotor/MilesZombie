@@ -19,3 +19,6 @@ func get_layers():
 	
 func get_layer(lname):
 	return
+
+func update_mouse_cursor(cname):
+	cursor.update_cursor(cname)
