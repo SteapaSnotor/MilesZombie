@@ -1,5 +1,4 @@
-Just update the .tres. The "ext_resource path" is wrong and you need to set it manually. Just assume the res:// is the actual Godot res://
+Just update the .tscn The "ext_resource path" is wrong and you need to set it manually. Just assume the res:// is the actual Godot res://
 
 e.g:
-res://sprites/tiles/graveyard/tilemap.png
-
+res://resources/tiles/graveyard/graveyard_tset.tres
